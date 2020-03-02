@@ -2,6 +2,6 @@ package com.hcl.library.dao;
 
 import com.hcl.library.generics.GenericCrudImpl;
 
-public class StaffDao<Staff> extends GenericCrudImpl{
+public class StaffDaoImpl<Staff> extends GenericCrudImpl{
 
 }
