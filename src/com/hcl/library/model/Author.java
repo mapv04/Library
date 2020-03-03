@@ -1,10 +1,9 @@
 package com.hcl.library.model;
 
-public class Author extends Person{
-	public Author(int id, String name, String lastName) {
-		super(id, name, lastName);
-		// TODO Auto-generated constructor stub
-	}
+import lombok.Data;
 
-	private String nationallity;
+@Data
+public class Author extends Person{
+	private String nacionality;
+
 }

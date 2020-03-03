@@ -1,10 +1,11 @@
 package com.hcl.library.model;
 
-public class Staff extends Person{
+import lombok.Data;
 
-	public Staff(int id, String name, String lastName) {
-		super(id, name, lastName);
-		// TODO Auto-generated constructor stub
-	}
+@Data
+public class Staff extends Person{
+	private String username;
+	private String password;
+	
 
 }
