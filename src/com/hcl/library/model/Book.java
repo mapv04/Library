@@ -7,12 +7,12 @@ public class Book {
 	private int booksAvailable;
 	private String category;
 	private String language;
-	private Autor autor;
+	private Author autor;
 	
 	
 	
 	public Book(int id, String name, String edition, int booksAvailable, String category, String language,
-			Autor autor) {
+			Author autor) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -22,10 +22,10 @@ public class Book {
 		this.language = language;
 		this.autor = autor;
 	}
-	public Autor getAutor() {
+	public Author getAutor() {
 		return autor;
 	}
-	public void setAutor(Autor autor) {
+	public void setAutor(Author autor) {
 		this.autor = autor;
 	}
 	public int getId() {
