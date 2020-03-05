@@ -3,8 +3,13 @@ package com.hcl.library.model;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Customer extends Person{
 	
 	private boolean status;
