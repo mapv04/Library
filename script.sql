@@ -84,3 +84,7 @@ CREATE TABLE loan_book(
     FOREIGN KEY (id_loan) REFERENCES loan(id),
     FOREIGN KEY (id_book) REFERENCES book(id)
 );
+
+CREATE USER IF NOT EXISTS 'user_library'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON library TO 'user_library'@'locaLhost';
+FLUSH PRIVILEGES;
