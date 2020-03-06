@@ -1,7 +1,8 @@
 package com.hcl.library.dao;
 
 import com.hcl.library.generics.GenericCrudImpl;
+import com.hcl.library.model.Book;
 
-public class BookDaoImpl<Book> extends GenericCrudImpl{
+public class BookDaoImpl extends GenericCrudImpl<Book>{
 
 }
