@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Author extends Person{
+public class AuthorBO extends PersonBO{
 	private String nacionality;
 
 }

@@ -8,13 +8,13 @@ import com.hcl.library.StatusLoan;
 import lombok.Builder;
 
 @Builder
-public class LoanBook {
+public class LoanBookBO {
 	private int id;
-	private Customer customer;
-	private Staff staff;
+	private CustomerBO customer;
+	private StaffBO staff;
 	private Date dateOfLoan;
 	private Date returnDate;
-	private List<Book> Books;
+	private List<BookBO> Books;
 	
 	
 	

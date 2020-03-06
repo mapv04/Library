@@ -3,7 +3,7 @@ package com.hcl.library.model.bo;
 import lombok.Builder;
 
 @Builder
-public class Address {
+public class AddressBO {
 	private int number;
 	private String street;
 	private String city;
