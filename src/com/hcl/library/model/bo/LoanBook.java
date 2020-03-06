@@ -1,4 +1,4 @@
-package com.hcl.library.model;
+package com.hcl.library.model.bo;
 
 import java.util.Date;
 import java.util.List;

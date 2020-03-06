@@ -1,4 +1,4 @@
-package com.hcl.library.model;
+package com.hcl.library.model.bo;
 
 import lombok.Data;
 import lombok.Getter;
@@ -8,9 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Staff extends Person{
-	private String username;
-	private String password;
-	
+public class Author extends Person{
+	private String nacionality;
 
 }
