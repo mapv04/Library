@@ -62,16 +62,25 @@ CREATE TABLE loan(
 
 CREATE TABLE book(
     id INT AUTO_INCREMENT NOT NULL,
-    id_author INT NOT NULL,
     name VARCHAR(50) NOT NULL,
     editorial VARCHAR (50) NOT NULL,
     quantity INT NOT NULL,
     edition VARCHAR(20) NOT NULL,
     category VARCHAR(30) NOT NULL,
     language VARCHAR(30) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_author) REFERENCES author(id)
+    PRIMARY KEY (id)
 
+);
+
+
+
+CREATE TABLE author_book(
+    id INT AUTO_INCREMENT NOT NULL,
+    id_author INT NOT NULL,
+    id_book INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_author) REFERENCES author(id),
+    FOREIGN KEY (id_book) REFERENCES book(id)
 );
 
 
