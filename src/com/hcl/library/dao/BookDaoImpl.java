@@ -1,8 +1,15 @@
 package com.hcl.library.dao;
 
+import java.util.List;
+
 import com.hcl.library.generics.GenericCrudImpl;
-import com.hcl.library.model.bo.BookBO;
+import com.hcl.library.model.po.AuthorPO;
+import com.hcl.library.model.po.BookPO;
 
-public class BookDaoImpl extends GenericCrudImpl<BookBO>{
-
+public class BookDaoImpl extends GenericCrudImpl<BookPO>{
+	
+	
+	public void addAuthors(BookPO tarjet, List<AuthorPO> authors) {
+		tarjet.setAuthors(authors);
+	}
 }

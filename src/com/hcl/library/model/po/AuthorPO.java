@@ -1,28 +1,48 @@
 package com.hcl.library.model.po;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity(name = "AuthorPO")
+@Table(name = "author")
+public class AuthorPO extends PersonPO {
 
 
-public class AuthorPO extends PersonPO{
-	private int id;
+	@ManyToMany(mappedBy = "authors")
+	private List<BookPO> Books;
+	
+	@Column
 	private String nacionality;
-	public int getId() {
-		return id;
+
+	public AuthorPO() {
+
 	}
-	public void setId(int id) {
-		this.id = id;
+	
+	public AuthorPO(String name, String lastName,  String nacionality) {
+		super(name, lastName);
+		this.nacionality = nacionality;
 	}
+
+
+	public List<BookPO> getBooks() {
+		return Books;
+	}
+
+	public void setBooks(List<BookPO> books) {
+		Books = books;
+	}
+
 	public String getNacionality() {
 		return nacionality;
 	}
+
 	public void setNacionality(String nacionality) {
 		this.nacionality = nacionality;
 	}
-	
-	
 	
 	
 

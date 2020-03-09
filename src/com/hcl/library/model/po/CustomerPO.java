@@ -2,42 +2,59 @@ package com.hcl.library.model.po;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity(name = "CustomerPO")
+@Table(name = "customer")
 public class CustomerPO extends PersonPO{
-	private int id;
+	
+	@Column
 	private boolean status;
+	
+	@OneToOne(cascade=CascadeType.ALL)
 	private AddressPO address;
+	
+	@Column
 	private Date birthday;
-	public int getId() {
-		return id;
+	
+	@OneToOne(mappedBy = "customer")
+	@JoinColumn(name="loan_id")
+	private LoanPO loan;
+	
+	public CustomerPO() {
+		
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public LoanPO getLoan() {
+		return loan;
 	}
-	public boolean isStatus() {
-		return status;
+
+	public void setLoan(LoanPO loan) {
+		this.loan = loan;
 	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+
 	public AddressPO getAddress() {
 		return address;
 	}
+
 	public void setAddress(AddressPO address) {
 		this.address = address;
 	}
-	public Date getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+	
+	
 	
 	
 
-	
+
 }

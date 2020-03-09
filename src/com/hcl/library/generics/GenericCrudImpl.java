@@ -5,11 +5,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private List<T> storage= new ArrayList<>();
 	
+	
 	public boolean create(T entity) {
-		System.out.println("creating");
+		System.out.println("creating: " +entity.getClass().getSimpleName());
+	
 		return false;
 	}
 
@@ -30,10 +36,8 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return  (T) entity;
 	}*/
 	
-	protected List<T> getStorage(){
+	public List<T> getStorage(){
 		return this.storage;
 	}
 	
-	
-
 }

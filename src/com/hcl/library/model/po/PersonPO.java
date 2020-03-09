@@ -1,14 +1,33 @@
 package com.hcl.library.model.po;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-
-public class PersonPO {
+@MappedSuperclass
+public abstract class PersonPO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@Column
 	private String name;
+	
+	@Column(name="last_name")
 	private String lastName;
+	
+	public PersonPO() {
+		
+	}
+	
+	public PersonPO(String name, String lastName) {
+		super();
+		this.name = name;
+		this.lastName = lastName;
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -4,9 +4,11 @@ USE library;
 
 CREATE TABLE author(
     id INT AUTO_INCREMENT NOT NULL,
+	id_book INT NOT NULL,
     name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     nacionality VARCHAR(30) NOT NULL,
+	FOREIGN KEY (id_book) REFERENCES book(id),
     PRIMARY KEY (id)
 );
 
