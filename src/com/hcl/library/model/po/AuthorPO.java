@@ -26,8 +26,7 @@ public class AuthorPO extends PersonPO {
 		super(name, lastName);
 		this.nacionality = nacionality;
 	}
-
-
+	
 	public List<BookPO> getBooks() {
 		return Books;
 	}

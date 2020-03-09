@@ -52,9 +52,4 @@ public class CustomerPO extends PersonPO{
 		this.address = address;
 	}
 	
-	
-	
-	
-
-
 }

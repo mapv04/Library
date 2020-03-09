@@ -126,11 +126,4 @@ public class BookPO {
 		this.authors = authors;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 }
