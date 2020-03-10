@@ -25,10 +25,23 @@ public class Main {
 		BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW", 8,"Fantasy", "english");
 		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW", 10,"Science fiction", "english");
 		BookPO book3 = new BookPO("I Robot","Gnome Press", "PRW", 10,"Science fiction", "english");
+		BookPO book4 = new BookPO("Time","Gnome Press", "PRW", 10,"Science fiction", "english");
+
+		autor1.getBooks().add(book1);
+		autor2.getBooks().add(book2);
+		autor2.getBooks().add(book3);
+		autor2.getBooks().add(book4);
 		
+		book1.getAuthors().add(autor1);
+		book2.getAuthors().add(autor2);
+		book3.getAuthors().add(autor2);
+		book4.getAuthors().add(autor2);
+
 		LoanPO loan = new LoanPO();
 		
-		AddressPO address = new AddressPO(12,"swe", "Guadalajara", "Jalisco", "Mexico", 555);
+		AddressPO address = new AddressPO();
+		address.setNumber(123);
+		
 		
 		CustomerPO customer = new CustomerPO();
 		customer.setName("Jesus");
@@ -42,6 +55,12 @@ public class Main {
 		
 		em.getTransaction().begin();
 		em.persist(loan);
+		
+		em.persist(book1);
+		em.persist(book2);
+		em.persist(book3);
+		em.persist(book4);
+
 		em.getTransaction().commit();
 		
 

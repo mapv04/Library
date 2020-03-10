@@ -14,36 +14,33 @@ import javax.persistence.Table;
 public class AddressPO {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	 
+	
+	@Column
 	private int number;
 	
+	@Column
 	private String street;
 	
+	@Column
 	private String city;
 	
+	@Column
 	private String state;
 	
+	@Column
 	private String country;
 	
+	@Column(name="zip_code")
 	private int postalCode;
 	
 	@OneToOne(mappedBy = "address")
-	@JoinColumn(name="address_id")
+	@JoinColumn(name="id_address")
 	private CustomerPO customer;
 	
 	public AddressPO() {
 			
-	}
-
-	public AddressPO(int number, String street, String city, String state, String country, int postalCode) {
-		super();
-		this.number = number;
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.postalCode = postalCode;
 	}
 
 	public int getId() {
@@ -109,9 +106,6 @@ public class AddressPO {
 	public void setCustomer(CustomerPO customer) {
 		this.customer = customer;
 	}
-	
-	
-	
-	
+
 	
 }

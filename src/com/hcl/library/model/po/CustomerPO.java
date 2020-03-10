@@ -29,13 +29,18 @@ public class CustomerPO extends PersonPO{
 	private Date birthday;
 	
 	@OneToOne(mappedBy = "customer")
-	@JoinColumn(name="loan_id")
 	private LoanPO loan;
+	
+	@Column
+	private String email;
+
+	@Column
+	private String phone;
 	
 	public CustomerPO() {
 		
 	}
-
+	
 	public LoanPO getLoan() {
 		return loan;
 	}
@@ -51,5 +56,37 @@ public class CustomerPO extends PersonPO{
 	public void setAddress(AddressPO address) {
 		this.address = address;
 	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

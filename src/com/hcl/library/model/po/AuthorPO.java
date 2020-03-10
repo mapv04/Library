@@ -1,9 +1,11 @@
 package com.hcl.library.model.po;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -13,7 +15,7 @@ public class AuthorPO extends PersonPO {
 
 
 	@ManyToMany(mappedBy = "authors")
-	private List<BookPO> Books;
+	private List<BookPO> Books = new ArrayList<>();
 	
 	@Column
 	private String nacionality;
@@ -43,6 +45,4 @@ public class AuthorPO extends PersonPO {
 		this.nacionality = nacionality;
 	}
 	
-	
-
 }

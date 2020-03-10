@@ -1,5 +1,6 @@
 package com.hcl.library.model.po;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,9 +43,9 @@ public class BookPO {
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_author", 
-				joinColumns = @JoinColumn(name = "book_id"), 
-				inverseJoinColumns = @JoinColumn(name = "author_id"))
-	private List<AuthorPO> authors;
+				joinColumns = @JoinColumn(name = "id_book"), 
+				inverseJoinColumns = @JoinColumn(name = "id_author"))
+	private List<AuthorPO> authors = new ArrayList<>();
 	
 	public BookPO() {
 		

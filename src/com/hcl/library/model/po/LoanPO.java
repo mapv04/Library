@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,14 +27,18 @@ public class LoanPO {
 	private int id;
 	
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_customer")
 	private CustomerPO customer;
 
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_staff")
 	private StaffPO staff;
-	//private Date dateOfLoan;
-	//private Date returnDate;
-	//private List<BookPO> Books;
 	
+	private Date dateOfLoan;
+	
+	private Date returnDate;
+	
+	//private List<BookPO> Books;
 	
 	public LoanPO(){
 		
@@ -54,10 +59,5 @@ public class LoanPO {
 	public void setStaff(StaffPO staff) {
 		this.staff = staff;
 	}
-	
-	
-	
-	
-	
 	
 }
