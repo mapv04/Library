@@ -23,6 +23,7 @@ public class CustomerPO extends PersonPO{
 	private boolean status;
 	
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_address")
 	private AddressPO address;
 	
 	@Column
