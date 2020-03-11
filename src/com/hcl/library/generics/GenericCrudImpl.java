@@ -29,13 +29,18 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
   
 	
 	public boolean create(T entity) {
-		System.out.println("creating: " +entity.getClass().getSimpleName());
 		EntityManager em=getEntityManager();
-		em.getTransaction().begin();
-		em.persist( entity );
-		em.getTransaction().commit();
-		em.close();
-		System.out.println("finished");
+
+		try {
+			em.getTransaction().begin();
+			em.persist( entity );
+			em.getTransaction().commit();
+			return true;
+		}catch(Exception e) {
+			System.out.print(e);
+		}finally {
+			em.close();
+		}
 		return false;
 	}
 
