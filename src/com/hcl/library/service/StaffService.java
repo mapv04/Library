@@ -1,8 +1,8 @@
-package com.hcl.library.dao;
+package com.hcl.library.service;
 
 import com.hcl.library.generics.GenericCrudImpl;
 import com.hcl.library.model.po.StaffPO;
 
-public class StaffDaoImpl extends GenericCrudImpl<StaffPO>{
+public class StaffService extends GenericCrudImpl<StaffPO>{
 
 }
