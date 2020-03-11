@@ -8,14 +8,34 @@ import java.util.function.Predicate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private List<T> storage= new ArrayList<>();
+	private EntityManagerFactory emf= Persistence.createEntityManagerFactory("Library");
+
 	
+	private EntityManager getEntityManager() {
+		EntityManager em = emf.createEntityManager();
+		return em;
+	}
+	
+  
 	
 	public boolean create(T entity) {
 		System.out.println("creating: " +entity.getClass().getSimpleName());
-	
+		EntityManager em=getEntityManager();
+		em.getTransaction().begin();
+		em.persist( entity );
+		em.getTransaction().commit();
+		em.close();
+		System.out.println("finished");
 		return false;
 	}
 

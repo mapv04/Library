@@ -10,6 +10,7 @@ import com.hcl.library.model.po.BookPO;
 import com.hcl.library.model.po.CustomerPO;
 import com.hcl.library.model.po.LoanPO;
 import com.hcl.library.model.po.StaffPO;
+import com.hcl.library.service.BookService;
 
 public class Main {
 
@@ -19,6 +20,14 @@ public class Main {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Library");
 		EntityManager em = emf.createEntityManager();
 		
+		BookService bookdao = new BookService();
+		BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
+		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW","Science fiction", "english");
+
+		
+		bookdao.create(book1);
+		bookdao.create(book2);
+		/*
 		AuthorPO autor1 = new AuthorPO("JRR","Tolkein","British");
 		AuthorPO autor2 = new AuthorPO("Isaac","Asimov ","Russian");
 	
@@ -64,7 +73,7 @@ public class Main {
 		em.persist(book4);
 
 		em.getTransaction().commit();
-		
+		*/
 
 	}
 
