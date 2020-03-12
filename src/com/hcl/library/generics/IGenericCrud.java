@@ -1,5 +1,6 @@
 package com.hcl.library.generics;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public interface IGenericCrud<T> {
@@ -10,6 +11,6 @@ public interface IGenericCrud<T> {
 
 	boolean update(int id, T newData);
 
-	//T findBy(Predicate<T> search);
+	T findById(Class<T> entityClass, int id);
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,24 +20,40 @@ import org.hibernate.service.ServiceRegistry;
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private List<T> storage= new ArrayList<>();
 	private EntityManagerFactory emf= Persistence.createEntityManagerFactory("Library");
-
+	private EntityManager em;
 	
-	private EntityManager getEntityManager() {
-		EntityManager em = emf.createEntityManager();
-		return em;
+	private void beginTransaction() {
+		this.em.getTransaction().begin();
 	}
 	
-  
+	
+	private void commitTransaction() {
+		this.em.getTransaction().commit();
+		this.em.close();
+	}
+	
+	private void manageCreateException(Exception e) {
+		System.out.println(e);
+		this.em.getTransaction().rollback();
+		this.em.close();
+	}
+	
+	private boolean persist(T entity) {
+		beginTransaction();
+		try {
+			this.em.persist( entity );
+		}catch(Exception e) {
+			manageCreateException(e);
+			return false;
+		}
+		commitTransaction();
+		return true;
+	}
+	
 	
 	public boolean create(T entity) {
-		System.out.println("creating: " +entity.getClass().getSimpleName());
-		EntityManager em=getEntityManager();
-		em.getTransaction().begin();
-		em.persist( entity );
-		em.getTransaction().commit();
-		em.close();
-		System.out.println("finished");
-		return false;
+		this.em=emf.createEntityManager();
+		return persist(entity);
 	}
 
 	public boolean deleteById(int id) {
@@ -49,12 +66,14 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return false;
 	}
 	
-	/*
-	public T findBy(Predicate<T> search) {
-		System.out.println("find");
-		Optional<T> entity = this.getStorage().stream().filter(search).findAny();
-		return  (T) entity;
-	}*/
+	
+	public T findById(Class<T> entityClass, int id) {
+		this.em = emf.createEntityManager();
+		T resource = this.em.find(entityClass, id);
+		em.close();
+		
+		return resource;
+	}
 	
 	public List<T> getStorage(){
 		return this.storage;
