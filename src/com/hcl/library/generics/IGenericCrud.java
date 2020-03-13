@@ -14,5 +14,9 @@ public interface IGenericCrud<T> {
 	T findById(int id);
 	
 	public List<T> findAll();
+	
+	public abstract Class<T> getDaoClass();
+
+	public abstract String getPOClassName();
 
 }

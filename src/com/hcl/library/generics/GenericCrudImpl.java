@@ -71,8 +71,6 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
         return em.createQuery("Select t from "+ getPOClassName() + " t").getResultList();
 	}
 	
-	public abstract Class<T> getDaoClass();
-
-	public abstract String getPOClassName();
+	
 	
 }

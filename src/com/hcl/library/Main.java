@@ -16,10 +16,10 @@ public class Main {
 		//bookdao.create(book1);
 		//bookdao.create(book2);
 		BookPO b=bookdao.findById(1);
-		//b.setName("Lord2");
+		b.setName("Lord3");
 		//System.out.println(b.toString());
-		//bookdao.update(b);
-		bookdao.findAll().forEach(book -> System.out.println(book.toString()));;
+		bookdao.update(b);
+		bookdao.findAll().forEach(book -> System.out.println(book.getName()));;
 		
 		bookdao.closeEntityManager();
 		/*
