@@ -11,7 +11,12 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private List<T> storage= new ArrayList<>();
 	private EntityManagerFactory emf= Persistence.createEntityManagerFactory("Library");
 	private EntityManager em;
+	private final Class<T> name;
 	
+	public GenericCrudImpl(Class<T> name){
+		this.em = emf.createEntityManager();
+		this.name = name;
+	}
 
 	private void manageCreateException(Exception e) {
 		System.out.println(e);
@@ -54,7 +59,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	public T findById(int id) {
 		
 		this.em = emf.createEntityManager();
-		T entity = this.em.find(getDaoClass(), id);		
+		T entity = this.em.find(name, id);		
 		return entity;
 	}
 	
@@ -68,7 +73,10 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	}
 	
 	public List<T> findAll() {
-        return em.createQuery("Select t from "+ getPOClassName() + " t").getResultList();
+		
+		StringBuilder out = new StringBuilder("SELECT t from ").append(name.getSimpleName()).append(" t");
+        System.out.println(out);
+		return em.createQuery(out.toString()).getResultList();
 	}
 	
 	

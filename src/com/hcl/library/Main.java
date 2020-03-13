@@ -1,25 +1,25 @@
 package com.hcl.library;
 
+import com.hcl.library.dao.BookDao;
 import com.hcl.library.model.po.BookPO;
-import com.hcl.library.service.BookService;
 
 public class Main {
 
 	public static void main(String[] args) {
 	
 		
-		BookService bookdao = new BookService();
+		BookDao bookdao = new BookDao();
 		//BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
 		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW","Science fiction", "english");
 
 		
 		//bookdao.create(book1);
 		//bookdao.create(book2);
-		BookPO b=bookdao.findById(1);
-		b.setName("Lord3");
+		//BookPO b=bookdao.findById(1);
+		//b.setName("Lord3");
 		//System.out.println(b.toString());
-		bookdao.update(b);
-		bookdao.findAll().forEach(book -> System.out.println(book.getName()));;
+		//bookdao.update(b);
+		bookdao.findAll().forEach(book -> System.out.println(book.getName()));
 		
 		bookdao.closeEntityManager();
 		/*
