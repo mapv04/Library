@@ -12,5 +12,7 @@ public interface IGenericCrud<T> {
 	T update(T newData);
 
 	T findById(int id);
+	
+	public List<T> findAll();
 
 }

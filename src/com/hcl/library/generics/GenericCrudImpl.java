@@ -58,7 +58,6 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return entity;
 	}
 	
-	public abstract Class<T> getDaoClass();
 	
 	public void closeEntityManager() {
 		em.close();
@@ -67,5 +66,13 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	public List<T> getStorage(){
 		return this.storage;
 	}
+	
+	public List<T> findAll() {
+        return em.createQuery("Select t from "+ getPOClassName() + " t").getResultList();
+	}
+	
+	public abstract Class<T> getDaoClass();
+
+	public abstract String getPOClassName();
 	
 }
