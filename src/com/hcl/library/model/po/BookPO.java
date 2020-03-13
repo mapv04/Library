@@ -131,6 +131,15 @@ public class BookPO {
 		this.loans = loans;
 	}
 
+	@Override
+	public String toString() {
+		return "BookPO [id=" + id + ", name=" + name + ", edition=" + edition + ", editorial=" + editorial
+				+ ", category=" + category + ", language=" + language + ", authors=" + authors + ", loans=" + loans
+				+ "]";
+	}
+	
+	
+
 	
 	
 	

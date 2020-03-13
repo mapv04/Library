@@ -1,32 +1,26 @@
 package com.hcl.library;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import com.hcl.library.model.po.AddressPO;
-import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.BookPO;
-import com.hcl.library.model.po.CustomerPO;
-import com.hcl.library.model.po.LoanPO;
-import com.hcl.library.model.po.StaffPO;
 import com.hcl.library.service.BookService;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Library");
-		EntityManager em = emf.createEntityManager();
+	
 		
 		BookService bookdao = new BookService();
-		BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
+		//BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
 		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW","Science fiction", "english");
 
 		
-		bookdao.create(book1);
-		bookdao.create(book2);
+		//bookdao.create(book1);
+		//bookdao.create(book2);
+		BookPO b=bookdao.findById(1);
+		b.setName("Lord2");
+		System.out.println(b.toString());
+		bookdao.update(b);
+		
+		bookdao.closeEntityManager();
 		/*
 		AuthorPO autor1 = new AuthorPO("JRR","Tolkein","British");
 		AuthorPO autor2 = new AuthorPO("Isaac","Asimov ","Russian");

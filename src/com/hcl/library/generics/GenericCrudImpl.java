@@ -2,51 +2,32 @@ package com.hcl.library.generics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private List<T> storage= new ArrayList<>();
 	private EntityManagerFactory emf= Persistence.createEntityManagerFactory("Library");
 	private EntityManager em;
 	
-	private void beginTransaction() {
-		this.em.getTransaction().begin();
-	}
-	
-	
-	private void commitTransaction() {
-		this.em.getTransaction().commit();
-		this.em.close();
-	}
-	
+
 	private void manageCreateException(Exception e) {
 		System.out.println(e);
 		this.em.getTransaction().rollback();
-		this.em.close();
+		//this.em.close();
 	}
 	
 	private boolean persist(T entity) {
-		beginTransaction();
+		em.getTransaction().begin();
 		try {
 			this.em.persist( entity );
 		}catch(Exception e) {
 			manageCreateException(e);
 			return false;
 		}
-		commitTransaction();
+		em.getTransaction();
 		return true;
 	}
 	
@@ -61,18 +42,26 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return false;
 	}
 
-	public boolean update(int id, T data) {
-		System.out.println("updating");
-		return false;
+	public T update( T entity) {
+		em.getTransaction().begin();
+		em.merge(entity);
+		em.getTransaction().commit();
+	
+		return entity;		
 	}
 	
 	
-	public T findById(Class<T> entityClass, int id) {
-		this.em = emf.createEntityManager();
-		T resource = this.em.find(entityClass, id);
-		em.close();
+	public T findById(int id) {
 		
-		return resource;
+		this.em = emf.createEntityManager();
+		T entity = this.em.find(getDaoClass(), id);		
+		return entity;
+	}
+	
+	public abstract Class<T> getDaoClass();
+	
+	public void closeEntityManager() {
+		em.close();
 	}
 	
 	public List<T> getStorage(){

@@ -12,4 +12,10 @@ public class BookService extends GenericCrudImpl<BookPO>{
 	public void addAuthors(BookPO tarjet, List<AuthorPO> authors) {
 		tarjet.setAuthors(authors);
 	}
+	
+	
+	public Class<BookPO> getDaoClass() {
+		return BookPO.class;
+	}
+
 }

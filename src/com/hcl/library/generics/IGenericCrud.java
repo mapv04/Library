@@ -9,8 +9,8 @@ public interface IGenericCrud<T> {
 
 	boolean deleteById(int id);
 
-	boolean update(int id, T newData);
+	T update(T newData);
 
-	T findById(Class<T> entityClass, int id);
+	T findById(int id);
 
 }

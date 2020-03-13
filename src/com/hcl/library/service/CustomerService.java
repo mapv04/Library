@@ -5,4 +5,10 @@ import com.hcl.library.model.po.CustomerPO;
 
 public class CustomerService extends GenericCrudImpl<CustomerPO> {
 
+	@Override
+	public Class<CustomerPO> getDaoClass() {
+		// TODO Auto-generated method stub
+		return CustomerPO.class;
+	}
+
 }
