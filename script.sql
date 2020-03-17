@@ -70,6 +70,7 @@ CREATE TABLE book(
     edition VARCHAR(20) NOT NULL,
     category VARCHAR(30) NOT NULL,
     language VARCHAR(30) NOT NULL,
+    bookcover VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 
 );

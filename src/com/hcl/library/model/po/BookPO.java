@@ -42,6 +42,9 @@ public class BookPO {
 	@Column
 	private String language;
 	
+	@Column
+	private String bookcover;
+	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_author", 
 				joinColumns = @JoinColumn(name = "id_book"), 
@@ -56,13 +59,14 @@ public class BookPO {
 		
 	}
 	
-	public BookPO(String name, String edition, String editorial, String category, String language) {
+	public BookPO(String name, String edition, String editorial, String category, String language, String bookcover) {
 		super();
 		this.name = name;
 		this.edition = edition;
 		this.editorial = editorial;
 		this.category = category;
 		this.language = language;
+		this.bookcover = bookcover;
 	}
 
 
@@ -107,12 +111,12 @@ public class BookPO {
 		this.category = category;
 	}
 
-	public String getLanguage() {
-		return language;
+	public String getBookcover() {
+		return bookcover;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setBookcover(String bookcover) {
+		this.bookcover = bookcover;
 	}
 
 	public List<AuthorPO> getAuthors() {
@@ -130,11 +134,19 @@ public class BookPO {
 	public void setLoans(List<LoanPO> loans) {
 		this.loans = loans;
 	}
+	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
 	@Override
 	public String toString() {
 		return "BookPO [id=" + id + ", name=" + name + ", edition=" + edition + ", editorial=" + editorial
-				+ ", category=" + category + ", language=" + language + ", authors=" + authors + ", loans=" + loans
+				+ ", category=" + category + ", language=" + language +", bookcover=" + bookcover + ", authors=" + authors + ", loans=" + loans
 				+ "]";
 	}
 	

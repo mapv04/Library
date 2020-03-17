@@ -11,6 +11,7 @@ public class BookBO {
 	private String category;
 	private String language;
 	private AuthorBO author;
+	private String bookcover;
 	
 	
 	

@@ -32,7 +32,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 			manageCreateException(e);
 			return false;
 		}
-		em.getTransaction();
+		em.getTransaction().commit();
 		return true;
 	}
 	

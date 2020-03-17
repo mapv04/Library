@@ -9,20 +9,26 @@ public class Main {
 	
 		
 		BookDao bookdao = new BookDao();
-		//BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
-		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW","Science fiction", "english");
-
 		
-		//bookdao.create(book1);
+		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW","Science fiction", "english", "foto");
+		
+		bookdao.create(book2);
+		
+		bookdao.closeEntityManager();
+		
+		
+		
+		/*
+			BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
+ 			//bookdao.create(book1);
 		//bookdao.create(book2);
 		//BookPO b=bookdao.findById(1);
 		//b.setName("Lord3");
 		//System.out.println(b.toString());
 		//bookdao.update(b);
-		bookdao.findAll().forEach(book -> System.out.println(book.getName()));
-		
-		bookdao.closeEntityManager();
-		/*
+		bookdao.findAll().
+  
+  
 		AuthorPO autor1 = new AuthorPO("JRR","Tolkein","British");
 		AuthorPO autor2 = new AuthorPO("Isaac","Asimov ","Russian");
 	
