@@ -2,10 +2,15 @@ package com.hcl.library.generics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import com.hcl.library.model.po.BookPO;
 
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private List<T> storage= new ArrayList<>();
@@ -79,6 +84,21 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return em.createQuery(out.toString()).getResultList();
 	}
 	
+	public T find(Predicate<T> predicate) {
+		T entity = null;
+		Optional<T> optionalEntity = findAll().stream().filter(predicate).findAny();
+
+		if (optionalEntity.isPresent()) {
+			return optionalEntity.get();
+		}
+		return entity;
+	}
+	
+	public List<T> findAll(Predicate<T> predicate) {
+		 List<T> entities = findAll().stream().filter(predicate).collect(Collectors.toList());	
+		return entities;
+	}
+
 	
 	
 }

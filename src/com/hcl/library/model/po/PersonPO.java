@@ -18,14 +18,17 @@ public abstract class PersonPO {
 	@Column(name="last_name")
 	private String lastName;
 	
+	private String curp;
+	
 	public PersonPO() {
 		
 	}
 	
-	public PersonPO(String name, String lastName) {
+	public PersonPO(String name, String lastName, String curp) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
+		this.curp = curp;
 	}
 	
 	public int getId() {
@@ -45,6 +48,14 @@ public abstract class PersonPO {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getCurp() {
+		return curp;
+	}
+
+	public void setCurp(String curp) {
+		this.curp = curp;
 	}
 
 	

@@ -1,13 +1,43 @@
 package com.hcl.library;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.hcl.library.dao.BookDao;
+import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.BookPO;
+import com.hcl.library.service.AuthorService;
+import com.hcl.library.service.BookService;
 
 public class Main {
 
 	public static void main(String[] args) {
 	
+		BookService bookservice = new BookService();
+		AuthorService authorservice = new AuthorService();
 		
+		BookPO book2 = new BookPO("Foundation2","Gnome Press", "PRW","Science fiction", "english", "foto");
+		BookPO book3 = new BookPO("Foundation3","Gnome Press", "PRW","Science fiction", "english", "foto");
+
+		AuthorPO autor2 = new AuthorPO();
+		
+		autor2.setName("Isaac");
+		autor2.setLastName("Asimov");
+		
+		
+		//bookservice.createBook(book2);
+		//bookservice.createBook(book3);
+		System.out.println(bookservice.findByName("Foundation3"));
+		
+
+		/*
+		try {
+		bookservice.findByAuthor("Isaac Asimov").forEach(b->System.out.println(b.getName()));
+		}catch(Exception e){
+			System.out.println("error in name");
+		}*/
+		
+		/*
 		BookDao bookdao = new BookDao();
 		
 		BookPO book2 = new BookPO("Foundation","Gnome Press", "PRW","Science fiction", "english", "foto");
@@ -16,7 +46,7 @@ public class Main {
 		
 		bookdao.closeEntityManager();
 		
-		
+		*/
 		
 		/*
 			BookPO book1 = new BookPO("Lord of the Rings","Allen & Unwin", "PRW","Fantasy", "english");
