@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,9 +16,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import com.hcl.library.model.enums.StatusBook;
 
-@Data
+
+
 @Entity(name="BookPO")
 @Table(name = "book")
 public class BookPO {
@@ -36,6 +40,9 @@ public class BookPO {
 	private String language;
 	
 	private String bookcover;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusBook status;
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_author", 

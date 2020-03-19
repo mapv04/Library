@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.LoanPO;
+import com.hcl.library.model.enums.StatusBook;
 
 import lombok.Builder;
 
@@ -20,5 +21,7 @@ public class BookBO {
 	private String bookcover;
 	private List<AuthorPO> authors = new ArrayList<>();
 	private List<LoanPO> loans = new ArrayList<>();
+	private StatusBook status;
 	
+		
 }

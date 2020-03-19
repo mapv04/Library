@@ -5,8 +5,8 @@ import com.hcl.library.model.po.LoanPO;
 
 public class LoanDao extends GenericCrudImpl<LoanPO> {
 	
-	public LoanDao(Class<LoanPO> name) {
-		super(name);
+	public LoanDao() {
+		super(LoanPO.class);
 	}
 
 	

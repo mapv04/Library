@@ -8,7 +8,7 @@ import com.hcl.library.StatusLoan;
 import lombok.Builder;
 
 @Builder
-public class LoanBookBO {
+public class LoanBO {
 	private int id;
 	private CustomerBO customer;
 	private StaffBO staff;
