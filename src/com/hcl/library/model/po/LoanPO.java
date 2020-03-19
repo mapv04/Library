@@ -18,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.hcl.library.StatusLoan;
-
 import lombok.Builder;
 
 

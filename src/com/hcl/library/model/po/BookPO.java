@@ -18,8 +18,10 @@ import javax.persistence.Table;
 
 import com.hcl.library.model.enums.StatusBook;
 
+import lombok.Data;
 
 
+@Data
 @Entity(name="BookPO")
 @Table(name = "book")
 public class BookPO {

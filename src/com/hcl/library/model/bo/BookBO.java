@@ -8,7 +8,9 @@ import com.hcl.library.model.po.LoanPO;
 import com.hcl.library.model.enums.StatusBook;
 
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 @Builder
 public class BookBO {
 	private int id;
