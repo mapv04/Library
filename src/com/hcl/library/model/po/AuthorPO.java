@@ -40,4 +40,6 @@ public class AuthorPO extends PersonPO {
 		this.nacionality = nacionality;
 	}
 	
+	
+	
 }

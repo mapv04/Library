@@ -1,5 +1,6 @@
 package com.hcl.library.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -7,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.hcl.library.dao.AuthorDao;
 import com.hcl.library.dao.BookDao;
+import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.BookPO;
 
 public class BookService {
@@ -22,7 +24,7 @@ public class BookService {
 	}
 
 	public boolean createBook(BookPO book) {
-		BookPO temporalBook = findByName(book.getName());
+		BookPO temporalBook = findByIsbn(book.getIsbn());
 		if (temporalBook == null) {
 			bookDao.create(book);
 			return true;
@@ -36,35 +38,32 @@ public class BookService {
 	}
 
 	public BookPO findByName(String name) {
-		String bookNameFormatted = name.replace(" ", "").toLowerCase();
-		Predicate<BookPO> sameBookName = bookName -> bookName.getName().replace(" ", "").toLowerCase()
-				.equals(bookNameFormatted);
-		return bookDao.find(sameBookName);
+		return bookDao.find(bookDao.criteriaOfSearching(name,"getName"));
 	}
 	
 	public List<BookPO> findByEditorial(String editorial) {
-		String bookNameFormatted = editorial.replace(" ", "").toLowerCase();
-		Predicate<BookPO> sameEditorialName = bookEditorial -> bookEditorial.getEditorial().replace(" ", "").toLowerCase()
-				.equals(bookNameFormatted);
-		return bookDao.findAll(sameEditorialName);
+		return bookDao.findAll(bookDao.criteriaOfSearching(editorial, "getEditorial"));
 	}
 	
 	public List<BookPO> findByCategory(String category) {
-		String bookNameFormatted = category.replace(" ", "").toLowerCase();		
-		Predicate<BookPO> sameCategoryName = bookCategory -> bookCategory.getCategory().replace(" ", "").toLowerCase()
-				.equals(bookNameFormatted);
-		return bookDao.findAll(sameCategoryName);
+		return bookDao.findAll(bookDao.criteriaOfSearching(category,"getCategory"));
 	}
 	
 	public List<BookPO> findByLanguage(String language) {
-		String bookNameFormatted = language.replace(" ", "").toLowerCase();		
-		Predicate<BookPO> sameLanguageName = bookCategory -> bookCategory.getLanguage().replace(" ", "").toLowerCase()
-				.equals(bookNameFormatted);
-		return bookDao.findAll(sameLanguageName);
+		return bookDao.findAll(bookDao.criteriaOfSearching(language, "getLanguage"));
 	}
-
 	
+	public BookPO findByIsbn(String isbn) {
+		return bookDao.find(bookDao.criteriaOfSearching(isbn, "getIsbn"));
+	}
 	
+	public List<BookPO> findByAuthor(String author){
+		AuthorPO temporalAuthor = authorDao.find(authorDao.criteriaOfSearching(author, "getFullName"));
+		if(temporalAuthor!=null) {
+			return temporalAuthor.getBooks();
+		}
+		return null;
+	}
 	
 
 }
