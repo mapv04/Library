@@ -33,6 +33,8 @@ public class BookPO {
 	@Column
 	private String edition;
 	
+	private String isbn;
+	
 	@Column
 	private String editorial;
 		

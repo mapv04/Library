@@ -23,12 +23,7 @@ public class AuthorPO extends PersonPO {
 	public AuthorPO() {
 
 	}
-	
-	public AuthorPO(String name, String lastName,  String nacionality) {
-		super(name, lastName);
-		this.nacionality = nacionality;
-	}
-	
+
 	public List<BookPO> getBooks() {
 		return Books;
 	}

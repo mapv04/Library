@@ -12,9 +12,7 @@ public class BookDao extends GenericCrudImpl<BookPO>{
 		super(BookPO.class);
 	}
 	
-	public void addAuthors(BookPO tarjet, List<AuthorPO> authors) {
-		tarjet.setAuthors(authors);
-	}
 	
-
+	
+	
 }
