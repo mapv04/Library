@@ -65,6 +65,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		
 		this.em = emf.createEntityManager();
 		T entity = this.em.find(name, id);		
+		
 		return entity;
 	}
 	
@@ -80,14 +81,13 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	public List<T> findAll() {
 		
 		StringBuilder out = new StringBuilder("SELECT t from ").append(name.getSimpleName()).append(" t");
-        System.out.println(out);
 		return em.createQuery(out.toString()).getResultList();
 	}
 	
 	public T find(Predicate<T> predicate) {
 		T entity = null;
 		Optional<T> optionalEntity = findAll().stream().filter(predicate).findAny();
-
+		
 		if (optionalEntity.isPresent()) {
 			return optionalEntity.get();
 		}
@@ -98,7 +98,20 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		 List<T> entities = findAll().stream().filter(predicate).collect(Collectors.toList());	
 		return entities;
 	}
-
+	
+	public Predicate<T> criteriaOfSearching(String tarjet, String method){
+		String bookNameFormatted = tarjet.replace(" ", "");			
+		Predicate<T> sameCondition = book -> {
+			try {
+				return book.getClass().getMethod(method).invoke(book).toString().replace(" ", "")
+						.equalsIgnoreCase(bookNameFormatted);
+			} catch (Exception e) {
+				return false;				
+			} 
+		};
+		
+		return sameCondition;
+	}
 	
 	
 }

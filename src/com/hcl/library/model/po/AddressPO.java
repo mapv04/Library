@@ -106,6 +106,8 @@ public class AddressPO {
 	public void setCustomer(CustomerPO customer) {
 		this.customer = customer;
 	}
+	
+	
 
 	
 }

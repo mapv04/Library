@@ -58,6 +58,8 @@ public abstract class PersonPO {
 		this.curp = curp;
 	}
 
-	
+	public String getFullName() {
+		return this.getName()+this.getLastName();
+	}
 	
 }
