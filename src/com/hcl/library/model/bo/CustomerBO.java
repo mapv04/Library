@@ -15,7 +15,8 @@ public class CustomerBO extends PersonBO{
 	private boolean status;
 	private AddressBO address;
 	private Date birthday;
-	
+	private String phone;
+	private String email;
 
 	
 }

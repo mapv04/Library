@@ -5,8 +5,8 @@ import com.hcl.library.model.po.CustomerPO;
 
 public class CustomerDao extends GenericCrudImpl<CustomerPO> {
 	
-	public CustomerDao(Class<CustomerPO> name) {
-		super(name);
+	public CustomerDao() {
+		super(CustomerPO.class);
 	}
 
 
