@@ -1,10 +1,6 @@
 package com.hcl.library.service;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import com.hcl.library.dao.AuthorDao;
 import com.hcl.library.dao.BookDao;
@@ -14,13 +10,11 @@ import com.hcl.library.model.po.BookPO;
 public class BookService {
 	private BookDao bookDao;
 	private AuthorDao authorDao;
-	private AuthorService authorService;
 	
 	
 	public BookService() {
 		bookDao = new BookDao();
 		authorDao = new AuthorDao();
-		authorService = new AuthorService();
 	}
 
 	public boolean createBook(BookPO book) {

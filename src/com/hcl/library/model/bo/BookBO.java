@@ -14,7 +14,6 @@ public class BookBO {
 	private String name;
 	private String edition;
 	private String isbn;
-	private int booksAvailable;
 	private String category;
 	private String language;
 	private String bookcover;
