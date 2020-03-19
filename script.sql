@@ -27,6 +27,7 @@ CREATE TABLE address(
 
 CREATE TABLE customer(
     id INT AUTO_INCREMENT NOT NULL,
+    curp VARCHAR(50) NOT NULL,
     id_address INT NOT NULL,
     name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -42,6 +43,7 @@ CREATE TABLE customer(
 
 CREATE TABLE staff(
     id INT AUTO_INCREMENT NOT NULL,
+    curp VARCHAR(50) NOT NULL,
     id_address INT NOT NULL,
     name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -64,6 +66,7 @@ CREATE TABLE loan(
 
 CREATE TABLE book(
     id INT AUTO_INCREMENT NOT NULL,
+    isbn VARCHAR(50) NOT NULL,
     name VARCHAR(50) NOT NULL,
     editorial VARCHAR (50) NOT NULL,
     quantity INT NOT NULL,
