@@ -24,5 +24,4 @@ public class BookBO {
 	private List<LoanBO> loans = new ArrayList<>();
 	private StatusBook status;
 	
-		
 }

@@ -5,8 +5,8 @@ import com.hcl.library.model.po.StaffPO;
 
 public class StaffDao extends GenericCrudImpl<StaffPO>{
 	
-	public StaffDao(Class<StaffPO> name) {
-		super(name);
+	public StaffDao() {
+		super(StaffPO.class);
 	}
 	
 }

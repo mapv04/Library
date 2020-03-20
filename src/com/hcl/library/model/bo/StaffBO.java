@@ -1,6 +1,5 @@
 package com.hcl.library.model.bo;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class StaffBO extends PersonBO{
-	private String username;
+	private String userName;
 	private String password;
-	
+	private LoanBO loan;
 
 }
