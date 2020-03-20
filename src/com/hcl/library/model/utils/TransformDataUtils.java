@@ -12,11 +12,24 @@ public final class TransformDataUtils {
 	}
 	
 	public static final LoanPO map(LoanBO businessLoan) {
-		return null;
+		LoanPO loan = new LoanPO();
+		loan.setCustomer(map(businessLoan.getCustomer()));
+		loan.setDateOfLoan(businessLoan.getDateOfLoan());
+		loan.setReturnDate(businessLoan.getReturnDate());
+		/*
+		 * TODO 
+		 * Method to map Staff and a List of Books
+		 *
+		 *loan.setStaff(map(businessLoan.getStaff()));
+		 *loan.setBooks(map(businessLoan.getBooks());
+		 */
+		return loan;
 	}
+	
 	public static final CustomerBO map(CustomerPO persistenceCustomer) {
 		return null;
 	}
+	
 	public static final CustomerPO map(CustomerBO busnessCustomer) {
 		return null;
 	}
