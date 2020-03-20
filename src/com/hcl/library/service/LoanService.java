@@ -15,17 +15,26 @@ public class LoanService {
 	private BookService bookService = new BookService();
 	
 	public boolean createLoan(LoanBO loan) {
-		List<BookBO> bookList = loan.getBooks();
+		
+		removeBooksNotAvailableToLoan(loan.getBooks());
+		
+		LoanPO newLoan = getPersistenceObject(loan);
+		
+		return loanDao.create(newLoan);
+	}
+	
+	private LoanPO getPersistenceObject(LoanBO loan) {
+		return TransformDataUtils.map(loan);
+	}
+	
+	private List<BookBO> removeBooksNotAvailableToLoan(List<BookBO> bookList){
 		for(BookBO book : bookList) {
 			BookPO bookFinded = bookService.findByIsbn(book.getIsbn());
 			if(bookFinded.getStatus() != StatusBook.AVAILABLE) {
 				bookList.remove(book);
 			}
 		}
-		
-		LoanPO newLoan = TransformDataUtils.map(loan);
-		
-		return loanDao.create(newLoan);
+		return bookList;
 	}
 
 }

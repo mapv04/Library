@@ -18,13 +18,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Data
 @Entity(name = "LoanPO")
 @Table(name = "loan")
 public class LoanPO {
 	
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	@Id
 	@GeneratedValue
 	@Column(name="loan_id")
@@ -55,45 +61,7 @@ public class LoanPO {
 		
 	}
 
-	public CustomerPO getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(CustomerPO customer) {
-		this.customer = customer;
-	}
-
-	public StaffPO getStaff() {
-		return staff;
-	}
-
-	public void setStaff(StaffPO staff) {
-		this.staff = staff;
-	}
-
-	public Date getDateOfLoan() {
-		return dateOfLoan;
-	}
-
-	public void setDateOfLoan(Date dateOfLoan) {
-		this.dateOfLoan = dateOfLoan;
-	}
-
-	public Date getReturnDate() {
-		return returnDate;
-	}
-
-	public void setReturnDate(Date returnDate) {
-		this.returnDate = returnDate;
-	}
-
-	public List<BookPO> getBooks() {
-		return books;
-	}
-
-	public void setBooks(BookPO book) {
-		this.books = books;
-	}
+	
 	
 	
 	
