@@ -9,8 +9,10 @@ import com.hcl.library.model.enums.StatusBook;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Builder
 public class BookBO {
 	private int id;
