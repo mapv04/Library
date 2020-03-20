@@ -1,6 +1,8 @@
 package com.hcl.library.model.bo;
 
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,5 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthorBO extends PersonBO{
 	private String nacionality;
+	private List<BookBO> Books = new ArrayList<>();
 
 }

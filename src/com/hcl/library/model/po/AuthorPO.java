@@ -9,37 +9,21 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity(name = "AuthorPO")
 @Table(name = "author")
 public class AuthorPO extends PersonPO {
 
-
+	private String nacionality;
+	
 	@ManyToMany(mappedBy = "authors")
 	private List<BookPO> Books = new ArrayList<>();
-	
-	@Column
-	private String nacionality;
-
-	public AuthorPO() {
-
-	}
-
-	public List<BookPO> getBooks() {
-		return Books;
-	}
-
-	public void setBooks(List<BookPO> books) {
-		Books = books;
-	}
-
-	public String getNacionality() {
-		return nacionality;
-	}
-
-	public void setNacionality(String nacionality) {
-		this.nacionality = nacionality;
-	}
-	
 	
 	
 }
