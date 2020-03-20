@@ -3,8 +3,6 @@ package com.hcl.library.model.bo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hcl.library.model.po.AuthorPO;
-import com.hcl.library.model.po.LoanPO;
 import com.hcl.library.model.enums.StatusBook;
 
 import lombok.Builder;
@@ -20,8 +18,8 @@ public class BookBO {
 	private String category;
 	private String language;
 	private String bookcover;
-	private List<AuthorPO> authors = new ArrayList<>();
-	private List<LoanPO> loans = new ArrayList<>();
+	private List<AuthorBO> authors = new ArrayList<>();
+	private List<LoanBO> loans = new ArrayList<>();
 	private StatusBook status;
 	
 		
