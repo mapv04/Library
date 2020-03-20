@@ -5,8 +5,8 @@ import com.hcl.library.model.po.AddressPO;
 
 public class AddressDao extends GenericCrudImpl<AddressPO>{
 
-	public AddressDao(Class<AddressPO> name) {
-		super(name);
+	public AddressDao() {
+		super(AddressPO.class);
 	}
-
+  
 }
