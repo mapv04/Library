@@ -5,7 +5,7 @@ import com.hcl.library.model.bo.LoanBO;
 import com.hcl.library.model.po.CustomerPO;
 import com.hcl.library.model.po.LoanPO;
 
-public final class TransformDataUtils {
+public final class ObjectMapper {
 
 	public static final LoanBO map(LoanPO persistenceLoan) {
 		return null;

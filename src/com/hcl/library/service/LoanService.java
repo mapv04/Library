@@ -8,7 +8,7 @@ import com.hcl.library.model.bo.LoanBO;
 import com.hcl.library.model.enums.StatusBook;
 import com.hcl.library.model.po.BookPO;
 import com.hcl.library.model.po.LoanPO;
-import com.hcl.library.model.utils.TransformDataUtils;
+import com.hcl.library.model.utils.ObjectMapper;
 
 public class LoanService {
 	private LoanDao loanDao = new LoanDao();
@@ -23,7 +23,7 @@ public class LoanService {
 	}
 	
 	private LoanPO getPersistenceObject(LoanBO loan) {
-		return TransformDataUtils.map(loan);
+		return ObjectMapper.map(loan);
 	}
 	
 	private List<BookBO> removeBooksNotAvailableToLoan(List<BookBO> bookList){

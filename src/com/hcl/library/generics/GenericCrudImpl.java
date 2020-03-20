@@ -75,7 +75,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return em.createQuery(out.toString()).getResultList();
 	}
 	
-	@Override
+	
 	public T find(Predicate<T> predicate) {
 		T entity = null;
 		Optional<T> optionalEntity = findAll().stream().filter(predicate).findAny();
