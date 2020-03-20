@@ -93,11 +93,11 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	}
 	
 	public Predicate<T> criteriaOfSearching(String tarjet, String method){
-		String bookNameFormatted = tarjet.replace(" ", "");			
-		Predicate<T> sameCondition = book -> {
+		String entityTarjetFormatted = tarjet.replace(" ", "");			
+		Predicate<T> sameCondition = entity -> {
 			try {
-				return book.getClass().getMethod(method).invoke(book).toString().replace(" ", "")
-						.equalsIgnoreCase(bookNameFormatted);
+				return entity.getClass().getMethod(method).invoke(entity).toString().replace(" ", "")
+						.equalsIgnoreCase(entityTarjetFormatted);
 			} catch (Exception e) {
 				return false;				
 			} 
