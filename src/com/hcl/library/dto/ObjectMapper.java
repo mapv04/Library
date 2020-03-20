@@ -1,4 +1,4 @@
-package com.hcl.library.model.utils;
+package com.hcl.library.dto;
 
 import com.hcl.library.model.bo.BookBO;
 import com.hcl.library.model.bo.CustomerBO;
