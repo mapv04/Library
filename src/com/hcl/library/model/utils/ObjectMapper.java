@@ -30,7 +30,17 @@ public final class ObjectMapper {
 		return null;
 	}
 	
-	public static final CustomerPO map(CustomerBO busnessCustomer) {
-		return null;
+	public static final CustomerPO map(CustomerBO businessCustomer) {
+		CustomerPO customer = new CustomerPO();
+		customer.setBirthday(businessCustomer.getBirthday());
+		customer.setCurp(businessCustomer.getCurp());
+		customer.setEmail(businessCustomer.getEmail());
+		customer.setName(businessCustomer.getName());
+		customer.setLastName(businessCustomer.getLastName());
+		customer.setId(businessCustomer.getId());
+		customer.setPhone(businessCustomer.getPhone());
+
+		//TODO address
+		return customer;
 	}
 }
