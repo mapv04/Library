@@ -35,6 +35,10 @@ public class BookService {
 		return bookDao.find(bookDao.criteriaOfSearching(name,"getName"));
 	}
 	
+	public List<BookPO> findByEdition(String edition) {
+		return bookDao.findAll(bookDao.criteriaOfSearching(edition, "getEdition"));
+	}
+	
 	public List<BookPO> findByEditorial(String editorial) {
 		return bookDao.findAll(bookDao.criteriaOfSearching(editorial, "getEditorial"));
 	}
