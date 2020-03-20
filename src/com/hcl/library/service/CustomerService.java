@@ -32,13 +32,10 @@ public class CustomerService {
 	public void updateCustomer(CustomerPO customer) {
 		customerDao.update(customer);
 	}
-	/*
+	
 	//search a customer
 	public CustomerPO findByName(String name) {
-		String customerNameEntry= name.replace(" ", "").toLowerCase();
-		Predicate<CustomerPO> sameCustomerName = customerName ->customerName.getName().equals(customerNameEntry);
-		
-		return CustomerDao.find(sameCustomerName);
+		return customerDao.find(customerDao.criteriaOfSearching(name, "getName"));
 	}
-	*/
+	
 }
