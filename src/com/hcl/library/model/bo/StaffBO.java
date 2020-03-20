@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class StaffBO extends PersonBO{
-	private String username;
+	private String userName;
 	private String password;
 	private LoanBO loan;
 

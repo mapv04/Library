@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name="staff")
 public class StaffPO extends PersonPO{
 	
-	private String username;
+	private String userName;
 
 	private String password;
 	
