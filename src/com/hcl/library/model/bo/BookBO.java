@@ -7,21 +7,24 @@ import com.hcl.library.model.enums.StatusBook;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
+@NoArgsConstructor
 public class BookBO {
 	private int id;
 	private String name;
-	private String edition;
 	private String isbn;
+	private String edition;
+	private String editorial;
 	private String category;
 	private String language;
 	private String bookcover;
+	private StatusBook status;
 	private List<AuthorBO> authors = new ArrayList<>();
 	private List<LoanBO> loans = new ArrayList<>();
-	private StatusBook status;
+	
 	
 }

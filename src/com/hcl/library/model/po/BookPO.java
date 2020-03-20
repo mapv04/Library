@@ -33,17 +33,11 @@ public class BookPO {
 	private int id;
 	
 	private String name;
-	
-	private String edition;
-	
 	private String isbn;
-	
+	private String edition;
 	private String editorial;
-		 
 	private String category;
-	
 	private String language;
-	
 	private String bookcover;
 	
 	@Enumerated(EnumType.STRING)
