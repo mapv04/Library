@@ -11,7 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
-	private List<T> storage= new ArrayList<>();
 	private EntityManagerFactory emf= Persistence.createEntityManagerFactory("Library");
 	private EntityManager em;
 	private final Class<T> name;
@@ -24,7 +23,13 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private void manageCreateException(Exception e) {
 		System.out.println(e);
 		this.em.getTransaction().rollback();
-		//this.em.close();
+	}
+	
+	
+	@Override
+	public boolean create(T entity) {
+		this.em=emf.createEntityManager();
+		return persist(entity);
 	}
 	
 	private boolean persist(T entity) {
@@ -38,18 +43,14 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		em.getTransaction().commit();
 		return true;
 	}
-	
-	
-	public boolean create(T entity) {
-		this.em=emf.createEntityManager();
-		return persist(entity);
-	}
 
+	@Override
 	public boolean deleteById(int id) {
 		System.out.println("deleting");
 		return false;
 	}
 
+	@Override
 	public T update( T entity) {
 		em.getTransaction().begin();
 		em.merge(entity);
@@ -58,7 +59,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return entity;		
 	}
 	
-	
+	@Override
 	public T findById(int id) {
 		
 		this.em = emf.createEntityManager();
@@ -67,21 +68,14 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		return entity;
 	}
 	
-	
-	public void closeEntityManager() {
-		em.close();
-	}
-	
-	public List<T> getStorage(){
-		return this.storage;
-	}
-	
+	@Override
 	public List<T> findAll() {
 		
 		StringBuilder out = new StringBuilder("SELECT t from ").append(name.getSimpleName()).append(" t");
 		return em.createQuery(out.toString()).getResultList();
 	}
 	
+	@Override
 	public T find(Predicate<T> predicate) {
 		T entity = null;
 		Optional<T> optionalEntity = findAll().stream().filter(predicate).findAny();
@@ -91,6 +85,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 		}
 		return entity;
 	}
+	
 	
 	public List<T> findAll(Predicate<T> predicate) {
 		 List<T> entities = findAll().stream().filter(predicate).collect(Collectors.toList());	

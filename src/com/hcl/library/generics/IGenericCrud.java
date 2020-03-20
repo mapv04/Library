@@ -13,7 +13,9 @@ public interface IGenericCrud<T> {
 
 	T findById(int id);
 	
-	public List<T> findAll();
+	List<T> findAll();
+	
+	T find(Predicate<T> predicate);
 
 
 }
