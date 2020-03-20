@@ -17,7 +17,6 @@ public class LoanService {
 	public boolean createLoan(LoanBO loan) {
 		
 		removeBooksNotAvailableToLoan(loan.getBooks());
-		
 		LoanPO newLoan = getPersistenceObject(loan);
 		
 		return loanDao.create(newLoan);
