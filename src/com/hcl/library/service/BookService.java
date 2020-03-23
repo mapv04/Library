@@ -20,7 +20,7 @@ public class BookService {
 	}
 
 	public boolean createBook(BookBO book) {
-		BookPO persistenceBook=getPersistenceObject(book);
+		BookPO persistenceBook=getPersistenceBook(book);
 		BookBO bookFound = findByIsbn(persistenceBook.getIsbn());
 		if (bookFound == null) {
 			bookDao.create(persistenceBook);
@@ -31,18 +31,18 @@ public class BookService {
 	}
 	
 	public void updateBook(BookBO book) {
-		BookPO persistenceBook=getPersistenceObject(book);
+		BookPO persistenceBook=getPersistenceBook(book);
 		bookDao.update(persistenceBook);
 	}
 
 	public BookBO findByName(String name) {
 		BookPO bookFound=bookDao.find(bookDao.criteriaOfSearching(name,"getName"));
-		return getBusinessObject(bookFound);
+		return getBusinessBook(bookFound);
 	}
 	
 	public BookBO findByIsbn(String isbn) {
 		BookPO bookFound=bookDao.find(bookDao.criteriaOfSearching(isbn, "getIsbn"));
-		return getBusinessObject(bookFound);
+		return getBusinessBook(bookFound);
 	}
 	
 	public List<BookBO> findByEdition(String edition) {
@@ -50,29 +50,30 @@ public class BookService {
 		return getBusinessList(booksFound);
 	}
 	
-	public List<BookPO> findByEditorial(String editorial) {
-		return bookDao.findAll(bookDao.criteriaOfSearching(editorial, "getEditorial"));
+	public List<BookBO> findByEditorial(String editorial) {
+		List<BookPO> booksFound=bookDao.findAll(bookDao.criteriaOfSearching(editorial, "getEditorial"));
+		return getBusinessList(booksFound);
 	}
 	
-	public List<BookPO> findByCategory(String category) {
-		return bookDao.findAll(bookDao.criteriaOfSearching(category,"getCategory"));
+	public List<BookBO> findByCategory(String category) {
+		List<BookPO> booksFound=bookDao.findAll(bookDao.criteriaOfSearching(category,"getCategory"));
+		return getBusinessList(booksFound);
 	}
 	
-	public List<BookPO> findByLanguage(String language) {
-		return bookDao.findAll(bookDao.criteriaOfSearching(language, "getLanguage"));
+	public List<BookBO> findByLanguage(String language) {
+		List<BookPO> booksFound= bookDao.findAll(bookDao.criteriaOfSearching(language, "getLanguage"));
+		return getBusinessList(booksFound);
 	}
 	
-	
-	
-	public List<BookPO> findByAuthor(String author){
-		AuthorPO temporalAuthor = authorDao.find(authorDao.criteriaOfSearching(author, "getFullName"));
-		if(temporalAuthor!=null) {
-			return temporalAuthor.getBooks();
+	public List<BookBO> findByAuthor(String author){
+		AuthorPO authorFound = authorDao.find(authorDao.criteriaOfSearching(author, "getFullName"));
+		if(authorFound!=null) {
+			return getBusinessList(authorFound.getBooks());
 		}
 		return null;
 	}
 	
-	private BookPO getPersistenceObject(BookBO book) {
+	private BookPO getPersistenceBook(BookBO book) {
 		return BookDto.map(book);
 	}
 	
@@ -80,7 +81,7 @@ public class BookService {
 		return BookDto.mapBookListToBO(books);
 	}
 	
-	private BookBO getBusinessObject(BookPO book) {
+	private BookBO getBusinessBook(BookPO book) {
 		return BookDto.map(book);
 	}
 
