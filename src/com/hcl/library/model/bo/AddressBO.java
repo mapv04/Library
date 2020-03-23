@@ -10,6 +10,7 @@ import lombok.Setter;
 //@Builder
 @NoArgsConstructor
 public class AddressBO {
+	private int id;
 	private int number;
 	private String street;
 	private String city;
