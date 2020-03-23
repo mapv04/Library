@@ -24,7 +24,8 @@ public final class LoanDTO {
 		return loan;
 	}
 	
-	public static final List<LoanPO> map(List<LoanBO> loans){
+	
+	public static final List<LoanPO> mapLoanListToPO(List<LoanBO> loans){
 		return loans.stream().map(loan -> {
 			LoanPO newLoan = new LoanPO();
 			newLoan.setCustomer(CustomerDto.map(loan.getCustomer()));
@@ -32,6 +33,21 @@ public final class LoanDTO {
 			newLoan.setBooks(BookDto.map(loan.getBooks()));
 			newLoan.setDateOfLoan(loan.getDateOfLoan());
 			newLoan.setReturnDate(loan.getReturnDate());
+			
+			return newLoan;
+			
+		}).collect(Collectors.toList());
+	}
+	
+	public static final List<LoanBO> mapLoanListToBO(List<LoanPO> loans){
+		return loans.stream().map(loan -> {
+			LoanBO newLoan = LoanBO.builder()
+					.customer(CustomerDto.map(loan.getCustomer()))
+					.staff(StaffDto.map(loan.getStaff()))
+					.books(BookDto.map(loan.getBooks()))
+					.dateOfLoan(loan.getDateOfLoan())
+					.returnDate(loan.getReturnDate())
+					.build();
 			
 			return newLoan;
 			
