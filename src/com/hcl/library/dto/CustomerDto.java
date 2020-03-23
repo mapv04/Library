@@ -16,8 +16,8 @@ public class CustomerDto {
 		customer.setCurp(persistenceCustomer.getCurp());
 		customer.setPhone(persistenceCustomer.getPhone());
 		customer.setEmail(persistenceCustomer.getEmail());
-
-		//TODO address
+		customer.setAddress(AddressDto.map(persistenceCustomer.getAddress()));
+	
 		return customer;
 	}
 	
@@ -31,8 +31,8 @@ public class CustomerDto {
 		customer.setCurp(businessCustomer.getCurp());
 		customer.setPhone(businessCustomer.getPhone());
 		customer.setEmail(businessCustomer.getEmail());
+		customer.setAddress(AddressDto.map(businessCustomer.getAddress()));
 		
-		//TODO address
 		return customer;
 	}
 }
