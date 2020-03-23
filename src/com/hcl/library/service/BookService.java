@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.hcl.library.dao.AuthorDao;
 import com.hcl.library.dao.BookDao;
+import com.hcl.library.dto.BookDto;
+import com.hcl.library.model.bo.BookBO;
 import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.BookPO;
 
@@ -17,10 +19,11 @@ public class BookService {
 		authorDao = new AuthorDao();
 	}
 
-	public boolean createBook(BookPO book) {
-		BookPO temporalBook = findByIsbn(book.getIsbn());
-		if (temporalBook == null) {
-			bookDao.create(book);
+	public boolean createBook(BookBO book) {
+		BookPO persistenceBook=getPersistenceObject(book);
+		BookPO bookFound = findByIsbn(persistenceBook.getIsbn());
+		if (bookFound == null) {
+			bookDao.create(persistenceBook);
 			return true;
 		} else {
 			return false;
@@ -63,5 +66,12 @@ public class BookService {
 		return null;
 	}
 	
+	private BookPO getPersistenceObject(BookBO book) {
+		return BookDto.map(book);
+	}
+	
+	private BookPO getBusinessObject(BookBO book) {
+		return BookDto.map(book);
+	}
 
 }
