@@ -2,9 +2,13 @@ package com.hcl.library.model.bo;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@Builder
+@Setter
+//@Builder
+@NoArgsConstructor
 public class AddressBO {
 	private int number;
 	private String street;
