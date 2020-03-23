@@ -1,18 +1,11 @@
 package com.hcl.library.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-
-import org.hibernate.loader.criteria.CriteriaLoader;
 
 import com.hcl.library.dao.AuthorDao;
 import com.hcl.library.dto.AuthorDto;
-import com.hcl.library.dto.BookDto;
 import com.hcl.library.model.bo.AuthorBO;
-import com.hcl.library.model.bo.BookBO;
 import com.hcl.library.model.po.AuthorPO;
-import com.hcl.library.model.po.BookPO;
 
 public class AuthorService {
 	private AuthorDao authorDao;
