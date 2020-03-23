@@ -30,13 +30,16 @@ public class BookService {
 		}
 	}
 	
-	public void updateBook(BookPO book) {
-		bookDao.update(book);
+	public void updateBook(BookBO book) {
+		BookPO persistenceBook=getPersistenceObject(book);
+		bookDao.update(persistenceBook);
 	}
 
-	public BookPO findByName(String name) {
-		return bookDao.find(bookDao.criteriaOfSearching(name,"getName"));
+	public BookBO findByName(String name) {
+		BookPO bookFound=bookDao.find(bookDao.criteriaOfSearching(name,"getName"));
+		return getBusinessObject(bookFound);
 	}
+	
 	
 	public List<BookPO> findByEdition(String edition) {
 		return bookDao.findAll(bookDao.criteriaOfSearching(edition, "getEdition"));
@@ -70,7 +73,7 @@ public class BookService {
 		return BookDto.map(book);
 	}
 	
-	private BookPO getBusinessObject(BookBO book) {
+	private BookBO getBusinessObject(BookPO book) {
 		return BookDto.map(book);
 	}
 
