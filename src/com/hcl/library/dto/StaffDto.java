@@ -1,6 +1,7 @@
 package com.hcl.library.dto;
 
 import com.hcl.library.model.bo.StaffBO;
+import com.hcl.library.model.po.LoanPO;
 import com.hcl.library.model.po.StaffPO;
 
 public class StaffDto {
@@ -12,9 +13,7 @@ public class StaffDto {
 		staff.setCurp(persistenceStaff.getCurp());
 		staff.setUserName(persistenceStaff.getUserName());
 		staff.setPassword(persistenceStaff.getPassword());
-		/* TODO
-		 staff.setLoan(persistenceStaff.getLoan());
-		 */
+		staff.setLoan(LoanDTO.map(persistenceStaff.getLoan()));
 		
 		return staff;
 	}
@@ -26,10 +25,7 @@ public class StaffDto {
 		staff.setCurp(businessStaff.getCurp());
 		staff.setUserName(businessStaff.getUserName());
 		staff.setPassword(businessStaff.getPassword());
-		
-		/* TODO
-		 staff.setLoan(persistenceStaff.getLoan());
-		 */
+		staff.setLoan(LoanDTO.map(businessStaff.getLoan()));
 		
 		return staff;
 	}	

@@ -18,8 +18,9 @@ public class BookDto {
 		book.setLanguage(persistenceBook.getLanguage());
 		book.setBookcover(persistenceBook.getBookcover());
 		book.setStatus(persistenceBook.getStatus());
+		book.setAuthors(AuthorDto.mapAuthorListToBO(persistenceBook.getAuthors()));
+		
 		/*TODO 
-			book.setAuthors(persistenceBook.getAuthors());
 			book.setLoans(persistenceBook.getLoans());  
 		*/
 		
@@ -37,14 +38,14 @@ public class BookDto {
 		book.setLanguage(businessBook.getLanguage());
 		book.setBookcover(businessBook.getBookcover());
 		book.setStatus(businessBook.getStatus());
-		book.setAuthors(AuthorDto.map(businessBook.getAuthors()));
+		book.setAuthors(AuthorDto.mapAuthorListToPO(businessBook.getAuthors()));
 		/* TODO
 			book.setLoans(businessBook.getLoans());
 		*/
 		return book;
 	}
 	
-	public static List<BookPO> map(List<BookBO> books){
+	public static final List<BookPO> mapBookListToPO(List<BookBO> books){
 		return books.stream().map(book -> {
 			BookPO newBook = new BookPO();
 			newBook.setName(book.getName());
@@ -55,7 +56,7 @@ public class BookDto {
 			newBook.setLanguage(book.getLanguage());
 			newBook.setBookcover(book.getBookcover());
 			newBook.setStatus(book.getStatus());
-			newBook.setAuthors(AuthorDto.map(book.getAuthors()));
+			newBook.setAuthors(AuthorDto.mapAuthorListToPO(book.getAuthors()));
 			/*
 			 * TODO
 			 * newBook.setLoans(loans);
@@ -66,4 +67,29 @@ public class BookDto {
 				.collect(Collectors.toList());
 		
 	}
+	
+	public static final List<BookBO> mapBookListToBO(List<BookPO> books){
+		return books.stream().map(book -> {
+			BookBO newBook = new BookBO();
+			newBook.setName(book.getName());
+			newBook.setIsbn(book.getIsbn());
+			newBook.setEdition(book.getEdition());
+			newBook.setEditorial(book.getEditorial());
+			newBook.setCategory(book.getCategory());
+			newBook.setLanguage(book.getLanguage());
+			newBook.setBookcover(book.getBookcover());
+			newBook.setStatus(book.getStatus());
+			newBook.setAuthors(AuthorDto.mapAuthorListToBO(book.getAuthors()));
+			/*
+			 * TODO
+			 * newBook.setLoans(loans);
+			 */
+			
+			return newBook;
+		})
+				.collect(Collectors.toList());
+		
+	}
+	
+
 }
