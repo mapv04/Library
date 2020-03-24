@@ -9,13 +9,13 @@ import com.hcl.library.model.po.CustomerPO;
 
 public class CustomerService {
 	private static CustomerDao customerDao;
-	public static CustomerService instance;
+	private static CustomerService instance;
 	
 	private CustomerService() {
 		customerDao = new CustomerDao();
 	}
 	
-	private static CustomerService getInstance() {
+	public static CustomerService getInstance() {
 		if(instance == null) {
 			instance = new CustomerService();
 		}
