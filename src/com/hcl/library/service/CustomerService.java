@@ -8,10 +8,19 @@ import com.hcl.library.model.po.BookPO;
 import com.hcl.library.model.po.CustomerPO;
 
 public class CustomerService {
-	private CustomerDao customerDao;
+	private static CustomerDao customerDao;
+	private static CustomerService instance;
 	
 	private CustomerService() {
-		customerDao= new CustomerDao();
+		customerDao = new CustomerDao();
+	}
+	
+	private static CustomerService getInstance() {
+		if(instance == null) {
+			instance = new CustomerService();
+		}
+		
+		return instance;
 	}
 	
 	//create the curstomer if does not exist 
