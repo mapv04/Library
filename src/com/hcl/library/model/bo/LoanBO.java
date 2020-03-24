@@ -14,7 +14,7 @@ public class LoanBO {
 	private StaffBO staff;
 	private Date dateOfLoan;
 	private Date returnDate;
-	private List<BookBO> Books;
+	private List<BookBO> books;
 	
 	
 	
