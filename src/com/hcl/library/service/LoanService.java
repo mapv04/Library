@@ -3,7 +3,8 @@ package com.hcl.library.service;
 import java.util.List;
 
 import com.hcl.library.dao.LoanDao;
-import com.hcl.library.dto.ObjectMapper;
+import com.hcl.library.dto.BookDto;
+import com.hcl.library.dto.LoanDTO;
 import com.hcl.library.model.bo.BookBO;
 import com.hcl.library.model.bo.LoanBO;
 import com.hcl.library.model.enums.StatusBook;
@@ -11,8 +12,18 @@ import com.hcl.library.model.po.BookPO;
 import com.hcl.library.model.po.LoanPO;
 
 public class LoanService {
-	private LoanDao loanDao = new LoanDao();
-	private BookService bookService = new BookService();
+	private static LoanService loanService;
+	private LoanDao loanDao;
+	private BookService bookService;
+	
+	private LoanService() {
+		this.loanDao = new LoanDao();
+		this.bookService = new BookService();
+	}
+	
+	public static LoanService getLoanService() {
+		return loanService == null ? loanService = new LoanService() : loanService;
+	}
 	
 	public boolean createLoan(LoanBO loan) {
 		
@@ -23,12 +34,12 @@ public class LoanService {
 	}
 	
 	private LoanPO getPersistenceObject(LoanBO loan) {
-		return ObjectMapper.map(loan);
+		return LoanDTO.map(loan);
 	}
 	
 	private List<BookBO> removeBooksNotAvailableToLoan(List<BookBO> bookList){
 		for(BookBO book : bookList) {
-			BookPO bookFinded = bookService.findByIsbn(book.getIsbn());
+			BookPO bookFinded = BookDto.map(bookService.findByIsbn(book.getIsbn()));
 			if(bookFinded.getStatus() != StatusBook.AVAILABLE) {
 				bookList.remove(book);
 			}
