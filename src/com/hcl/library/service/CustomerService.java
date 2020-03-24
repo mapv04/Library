@@ -9,7 +9,7 @@ import com.hcl.library.model.po.CustomerPO;
 
 public class CustomerService {
 	private static CustomerDao customerDao;
-	private static CustomerService instance;
+	public static CustomerService instance;
 	
 	private CustomerService() {
 		customerDao = new CustomerDao();
