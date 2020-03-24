@@ -8,12 +8,20 @@ import com.hcl.library.model.bo.AuthorBO;
 import com.hcl.library.model.po.AuthorPO;
 
 public class AuthorService {
+	private static AuthorService instance;
 	private AuthorDao authorDao;
 
-	public AuthorService() {
+	private AuthorService() {
 		authorDao = new AuthorDao();
 	}
-
+	
+	public static AuthorService getInstance() {
+		if(instance==null) {
+			instance=new AuthorService();
+		}
+		return instance;
+	}
+	
 	public boolean createBook(AuthorBO author) {
 		AuthorPO persistenceAuthor = getPersistenceAuthor(author);
 		AuthorBO authorFound = findByName(persistenceAuthor.getFullName());

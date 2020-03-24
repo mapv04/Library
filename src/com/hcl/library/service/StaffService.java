@@ -6,10 +6,18 @@ import com.hcl.library.model.bo.StaffBO;
 import com.hcl.library.model.po.StaffPO;
 
 public class StaffService {
+	private static StaffService instance;
 	private StaffDao staffDao;
 	
-	public StaffService(){
+	private StaffService(){
 		staffDao = new StaffDao();
+	}
+	
+	public static StaffService getInstance() {
+		if(instance==null) {
+			instance=new StaffService();
+		}
+		return instance;
 	}
 	
 	public boolean saveStaff(StaffBO staff) {

@@ -11,13 +11,21 @@ import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.BookPO;
 
 public class BookService {
+	private static BookService instance;
 	private BookDao bookDao;
 	private AuthorDao authorDao;
 	
 	
-	public BookService() {
+	private BookService() {
 		bookDao = new BookDao();
 		authorDao = new AuthorDao();
+	}
+	
+	public static BookService getInstance() {
+		if(instance==null) {
+			instance = new BookService();
+		}
+		return instance;
 	}
 
 	public boolean createBook(BookBO book) {
