@@ -15,7 +15,7 @@ public class CustomerService {
 		customerDao = new CustomerDao();
 	}
 	
-	private static CustomerService getInstance() {
+	public static CustomerService getInstance() {
 		if(instance == null) {
 			instance = new CustomerService();
 		}
