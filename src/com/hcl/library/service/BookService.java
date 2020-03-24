@@ -6,6 +6,7 @@ import com.hcl.library.dao.AuthorDao;
 import com.hcl.library.dao.BookDao;
 import com.hcl.library.dto.BookDto;
 import com.hcl.library.model.bo.BookBO;
+import com.hcl.library.model.enums.StatusBook;
 import com.hcl.library.model.po.AuthorPO;
 import com.hcl.library.model.po.BookPO;
 
@@ -71,6 +72,11 @@ public class BookService {
 			return getBusinessList(authorFound.getBooks());
 		}
 		return null;
+	}
+	
+	public void changeStatus(BookBO book, StatusBook status) {
+		book.setStatus(status);
+		updateBook(book);
 	}
 	
 	private BookPO getPersistenceBook(BookBO book) {
