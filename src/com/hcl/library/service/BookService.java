@@ -24,8 +24,7 @@ public class BookService {
 		BookPO persistenceBook=getPersistenceBook(book);
 		BookBO bookFound = findByIsbn(persistenceBook.getIsbn());
 		if (bookFound == null) {
-			bookDao.create(persistenceBook);
-			return true;
+			return bookDao.create(persistenceBook);
 		} else {
 			return false;
 		}
@@ -48,7 +47,11 @@ public class BookService {
 	
 	public List<BookBO> findByEdition(String edition) {
 		List<BookPO> booksFound=bookDao.findAll(bookDao.criteriaOfSearching(edition, "getEdition"));
-		return getBusinessList(booksFound);
+		if(booksFound!=null) {
+			return getBusinessList(booksFound);
+		}else {
+			return null;
+		}
 	}
 	
 	public List<BookBO> findByEditorial(String editorial) {
@@ -80,15 +83,27 @@ public class BookService {
 	}
 	
 	private BookPO getPersistenceBook(BookBO book) {
-		return BookDto.map(book);
-	}
-	
-	private List<BookBO> getBusinessList(List<BookPO> books) {
-		return BookDto.mapBookListToBO(books);
+		if(book!=null) {
+			return BookDto.map(book);
+		}else {
+			return null;
+		}
 	}
 	
 	private BookBO getBusinessBook(BookPO book) {
-		return BookDto.map(book);
+		if(book!=null) {
+			return BookDto.map(book);
+		}else {
+			return null;
+		}
 	}
-
+	
+	private List<BookBO> getBusinessList(List<BookPO> books) {
+		if(books!=null) {
+			return BookDto.mapBookListToBO(books);
+		}else {
+			return null;
+		}
+	}
+	
 }

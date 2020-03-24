@@ -37,11 +37,19 @@ public class StaffService {
 	}
 	
 	private StaffPO getPersistenceStaff(StaffBO staff) {
-		return StaffDto.map(staff);
+		if(staff!=null) {
+			return StaffDto.map(staff);
+		}else {
+			return null;
+		}
 	}
 	
 	private StaffBO getBusinessStaff(StaffPO staff) {
-		return StaffDto.map(staff);
+		if(staff!=null) {
+			return StaffDto.map(staff);
+		}else {
+			return null;
+		}
 	}
 	
 }
