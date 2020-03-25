@@ -49,7 +49,5 @@ public class BookPO {
 				inverseJoinColumns = @JoinColumn(name = "id_author"))
 	private List<AuthorPO> authors = new ArrayList<>();
 	
-	@ManyToMany(mappedBy="books")
-	private List<LoanPO> loans = new ArrayList<>();
 	
 }

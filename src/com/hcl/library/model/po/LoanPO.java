@@ -48,7 +48,7 @@ public class LoanPO {
 	
 	private Date returnDate;
 	
-	@ManyToMany
+	@OneToMany
 	@JoinTable(
 		name = "loan_book",
 		joinColumns = @JoinColumn(name="id_loan"),
