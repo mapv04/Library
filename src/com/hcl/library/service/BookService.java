@@ -5,6 +5,7 @@ import java.util.List;
 import com.hcl.library.dao.AuthorDao;
 import com.hcl.library.dao.BookDao;
 import com.hcl.library.dto.BookDto;
+import com.hcl.library.model.bo.AuthorBO;
 import com.hcl.library.model.bo.BookBO;
 import com.hcl.library.model.enums.StatusBook;
 import com.hcl.library.model.po.AuthorPO;
@@ -14,11 +15,13 @@ public class BookService {
 	private static BookService instance;
 	private BookDao bookDao;
 	private AuthorDao authorDao;
-	
+	private AuthorService authorService;
 	
 	private BookService() {
 		bookDao = new BookDao();
 		authorDao = new AuthorDao();
+		authorService=AuthorService.getInstance();
+
 	}
 	
 	public static BookService getInstance() {
@@ -34,6 +37,8 @@ public class BookService {
 		if (bookFound == null) {
 			return bookDao.create(persistenceBook);
 		} else {
+			System.out.println("book already exist");
+
 			return false;
 		}
 	}
@@ -84,10 +89,16 @@ public class BookService {
 		}
 		return null;
 	}
+	public void addAuthor(BookBO book, AuthorBO author) {
+		AuthorBO authorFound=authorService.findByName(author.getFullName());
+		if(authorFound==null) {
+			book.getAuthors().add((author));
+		}
+		System.out.println("Author already exist");
+	}
 	
 	public void changeStatus(BookBO book, StatusBook status) {
 		book.setStatus(status);
-		updateBook(book);
 	}
 	
 	private BookPO getPersistenceBook(BookBO book) {

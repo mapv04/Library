@@ -48,7 +48,7 @@ public class AuthorService {
 		return getBusinessList(authorsFound);
 	}
 
-	private AuthorPO getPersistenceAuthor(AuthorBO author) {
+	protected AuthorPO getPersistenceAuthor(AuthorBO author) {
 		if(author!=null) {
 			return AuthorDto.map(author);
 		}else {

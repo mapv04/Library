@@ -1,6 +1,5 @@
 package com.hcl.library.generics;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -93,7 +92,7 @@ public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	}
 	
 	public Predicate<T> criteriaOfSearching(String tarjet, String method){
-		String entityTarjetFormatted = tarjet.replace(" ", "");			
+		String entityTarjetFormatted = tarjet.replace(" ", "");		
 		Predicate<T> sameCondition = entity -> {
 			try {
 				return entity.getClass().getMethod(method).invoke(entity).toString().replace(" ", "")
