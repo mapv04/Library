@@ -14,7 +14,7 @@ public class AuthorDto {
 		author.setName(persistenceAuthor.getName());
 		author.setLastName(persistenceAuthor.getLastName());
 		author.setCurp(persistenceAuthor.getCurp());
-		author.setBooks(BookDto.mapBookListToBO(persistenceAuthor.getBooks()));
+		//author.setBooks(BookDto.mapBookListToBO(persistenceAuthor.getBooks()));
 	
 		return author;
 	}
@@ -25,7 +25,7 @@ public class AuthorDto {
 		author.setName(businessAuthor.getName());
 		author.setLastName(businessAuthor.getLastName());
 		author.setCurp(businessAuthor.getCurp());
-		author.setBooks(BookDto.mapBookListToPO(businessAuthor.getBooks()));
+		//author.setBooks(BookDto.mapBookListToPO(businessAuthor.getBooks()));
 		
 		return author;
 	}
