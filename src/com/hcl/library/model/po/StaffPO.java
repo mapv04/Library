@@ -1,7 +1,10 @@
 package com.hcl.library.model.po;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,8 +23,4 @@ public class StaffPO extends PersonPO{
 
 	private String password;
 	
-	@OneToOne(mappedBy = "staff")
-	@JoinColumn(name="staff_id")
-	private LoanPO loan;
-
 }
