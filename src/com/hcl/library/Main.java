@@ -14,8 +14,8 @@ public class Main {
 
 	public static void main(String[] args){
 		
-		BookService bookservice = new BookService();
-		AuthorService authorservice = new AuthorService();
+		BookService bookservice = BookService.getInstance();
+		AuthorService authorservice = AuthorService.getInstance();
 		BookPO book1 = new BookPO();
 		AuthorPO author1 = new AuthorPO();
 		/*
