@@ -18,7 +18,7 @@ public class LoanService {
 	
 	private LoanService() {
 		this.loanDao = new LoanDao();
-		this.bookService = new BookService();
+		this.bookService = BookService.getInstance();
 	}
 	
 	public static LoanService getLoanService() {
