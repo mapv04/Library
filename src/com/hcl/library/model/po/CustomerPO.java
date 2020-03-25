@@ -29,8 +29,6 @@ public class CustomerPO extends PersonPO{
 	@Column
 	private Date birthday;
 	
-	@OneToOne(mappedBy = "customer")
-	private LoanPO loan;
 	
 	@Column
 	private String email;
@@ -42,13 +40,6 @@ public class CustomerPO extends PersonPO{
 		
 	}
 	
-	public LoanPO getLoan() {
-		return loan;
-	}
-
-	public void setLoan(LoanPO loan) {
-		this.loan = loan;
-	}
 
 	public AddressPO getAddress() {
 		return address;

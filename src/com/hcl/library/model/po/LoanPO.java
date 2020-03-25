@@ -36,11 +36,11 @@ public class LoanPO {
 	@Column(name="loan_id")
 	private int id;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne(optional= false, fetch = FetchType.EAGER)
 	@JoinColumn(name="id_customer")
 	private CustomerPO customer;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne(optional= false, fetch = FetchType.EAGER)
 	@JoinColumn(name="id_staff")
 	private StaffPO staff;
 	
