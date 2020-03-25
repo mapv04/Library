@@ -13,7 +13,6 @@ public class StaffDto {
 		staff.setCurp(persistenceStaff.getCurp());
 		staff.setUserName(persistenceStaff.getUserName());
 		staff.setPassword(persistenceStaff.getPassword());
-		staff.setLoan(LoanDTO.map(persistenceStaff.getLoan()));
 		
 		return staff;
 	}
@@ -25,7 +24,6 @@ public class StaffDto {
 		staff.setCurp(businessStaff.getCurp());
 		staff.setUserName(businessStaff.getUserName());
 		staff.setPassword(businessStaff.getPassword());
-		staff.setLoan(LoanDTO.map(businessStaff.getLoan()));
 		
 		return staff;
 	}	
