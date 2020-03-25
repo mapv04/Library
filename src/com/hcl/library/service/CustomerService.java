@@ -12,7 +12,7 @@ public class CustomerService {
 	private static CustomerService instance;
 	
 	private CustomerService() {
-		customerDao = new CustomerDao();
+		this.customerDao = new CustomerDao();
 	}
 	
 	public static CustomerService getInstance() {
