@@ -1,7 +1,7 @@
 package com.hcl.library.model.po;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,14 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,9 +41,9 @@ public class LoanPO {
 	@JoinColumn(name="id_staff")
 	private StaffPO staff;
 	
-	private Date dateOfLoan;
+	private LocalDate dateOfLoan;
 	
-	private Date returnDate;
+	private LocalDate returnDate;
 	
 	@OneToMany
 	@JoinTable(
