@@ -23,7 +23,7 @@ public class StaffService {
 	public boolean saveStaff(StaffBO staff) {
 		StaffPO persistenceStaff = getPersistenceStaff(staff);
 		StaffBO staffFound = findByCurp(staff.getCurp());
-		if(staffFound!=null) {
+		if(staffFound==null) {
 			return staffDao.create(persistenceStaff);
 		}
 		return false;
