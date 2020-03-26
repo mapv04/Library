@@ -1,6 +1,8 @@
 package com.hcl.library.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.hcl.library.dao.LoanDao;
 import com.hcl.library.dto.BookDto;
@@ -15,36 +17,51 @@ public class LoanService {
 	private static LoanService loanService;
 	private LoanDao loanDao;
 	private BookService bookService;
-	
+
 	private LoanService() {
 		this.loanDao = new LoanDao();
 		this.bookService = BookService.getInstance();
 	}
-	
+
 	public static LoanService getLoanService() {
 		return loanService == null ? loanService = new LoanService() : loanService;
 	}
-	
+
 	public boolean createLoan(LoanBO loan) {
-		
-		removeBooksNotAvailableToLoan(loan.getBooks());
-		LoanPO newLoan = getPersistenceObject(loan);
-		
-		return loanDao.create(newLoan);
+		boolean isCreated = false;
+		if (!loanHasNulls(loan)) {
+			loan.setBooks(removeBooksNotAvailableToLoan(loan.getBooks()));
+			if (loan.getBooks().size() > 0) {
+				LoanPO newLoan = getPersistenceObject(loan);
+				isCreated = loanDao.create(newLoan);
+				loanBooks(loan.getBooks());
+			}
+		}
+		return isCreated;
 	}
-	
+
 	private LoanPO getPersistenceObject(LoanBO loan) {
 		return LoanDTO.map(loan);
 	}
-	
-	private List<BookBO> removeBooksNotAvailableToLoan(List<BookBO> bookList){
-		for(BookBO book : bookList) {
-			BookPO bookFinded = BookDto.map(bookService.findByIsbn(book.getIsbn()));
-			if(bookFinded.getStatus() != StatusBook.AVAILABLE) {
-				bookList.remove(book);
-			}
+
+	private List<BookBO> removeBooksNotAvailableToLoan(List<BookBO> bookList) {
+		return bookList.stream()
+				.map(book -> bookService.findByIsbn(book.getIsbn()))
+				.filter(book -> BookDto.map(bookService.findByIsbn(book.getIsbn())).getStatus() == StatusBook.AVAILABLE)
+				.collect(Collectors.toList());
+	}
+
+	private boolean loanHasNulls(LoanBO loan) {
+		return Stream
+				.of(loan.getStaff(), loan.getCustomer(), loan.getDateOfLoan(), loan.getReturnDate(), loan.getBooks())
+				.anyMatch(x -> x == null);
+	}
+
+	private void loanBooks(List<BookBO> books) {
+		for (BookBO book : books) {
+			book.setStatus(StatusBook.LOANED);
+			bookService.updateBook(book);
 		}
-		return bookList;
 	}
 
 }

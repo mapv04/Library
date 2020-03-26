@@ -43,6 +43,7 @@ public class BookDto {
 	public static final List<BookPO> mapBookListToPO(List<BookBO> books){
 		return books.stream().map(book -> {
 			BookPO newBook = new BookPO();
+			newBook.setId(book.getId());
 			newBook.setName(book.getName());
 			newBook.setIsbn(book.getIsbn());
 			newBook.setEdition(book.getEdition());
