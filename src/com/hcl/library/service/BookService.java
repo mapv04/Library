@@ -45,6 +45,7 @@ public class BookService {
 	
 	public void updateBook(BookBO book) {
 		BookPO persistenceBook=getPersistenceBook(book);
+		
 		bookDao.update(persistenceBook);
 	}
 

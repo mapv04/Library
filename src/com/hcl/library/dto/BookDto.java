@@ -19,10 +19,7 @@ public class BookDto {
 		book.setBookcover(persistenceBook.getBookcover());
 		book.setStatus(persistenceBook.getStatus());
 		book.setAuthors(AuthorDto.mapAuthorListToBO(persistenceBook.getAuthors()));
-		
-		/*TODO 
-			book.setLoans(persistenceBook.getLoans());  
-		*/
+	
 		
 		return book;
 	}
@@ -32,16 +29,14 @@ public class BookDto {
 		book.setId(businessBook.getId());
 		book.setName(businessBook.getName());
 		book.setEdition(businessBook.getEdition());
-		book.setEditorial(businessBook.getEdition());
+		book.setEditorial(businessBook.getEditorial());
 		book.setIsbn(businessBook.getIsbn());
 		book.setCategory(businessBook.getCategory());
 		book.setLanguage(businessBook.getLanguage());
 		book.setBookcover(businessBook.getBookcover());
 		book.setStatus(businessBook.getStatus());
 		book.setAuthors(AuthorDto.mapAuthorListToPO(businessBook.getAuthors()));
-		/* TODO
-			book.setLoans(businessBook.getLoans());
-		*/
+	
 		return book;
 	}
 	
@@ -57,10 +52,7 @@ public class BookDto {
 			newBook.setBookcover(book.getBookcover());
 			newBook.setStatus(book.getStatus());
 			newBook.setAuthors(AuthorDto.mapAuthorListToPO(book.getAuthors()));
-			/*
-			 * TODO
-			 * newBook.setLoans(loans);
-			 */
+		
 			
 			return newBook;
 		})
@@ -80,10 +72,6 @@ public class BookDto {
 			newBook.setBookcover(book.getBookcover());
 			newBook.setStatus(book.getStatus());
 			newBook.setAuthors(AuthorDto.mapAuthorListToBO(book.getAuthors()));
-			/*
-			 * TODO
-			 * newBook.setLoans(loans);
-			 */
 			
 			return newBook;
 		})
