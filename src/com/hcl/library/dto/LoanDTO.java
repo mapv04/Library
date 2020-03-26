@@ -1,6 +1,5 @@
 package com.hcl.library.dto;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,7 @@ public final class LoanDTO {
 	public static final LoanBO map(LoanPO persistenceLoan) {
 		return null;
 	}
-	
+
 	public static final LoanPO map(LoanBO businessLoan) {
 		LoanPO loan = new LoanPO();
 		loan.setCustomer(CustomerDto.map(businessLoan.getCustomer()));
@@ -23,9 +22,8 @@ public final class LoanDTO {
 
 		return loan;
 	}
-	
-	
-	public static final List<LoanPO> mapLoanListToPO(List<LoanBO> loans){
+
+	public static final List<LoanPO> mapLoanListToPO(List<LoanBO> loans) {
 		return loans.stream().map(loan -> {
 			LoanPO newLoan = new LoanPO();
 			newLoan.setCustomer(CustomerDto.map(loan.getCustomer()));
@@ -33,26 +31,24 @@ public final class LoanDTO {
 			newLoan.setBooks(BookDto.mapBookListToPO(loan.getBooks()));
 			newLoan.setDateOfLoan(loan.getDateOfLoan());
 			newLoan.setReturnDate(loan.getReturnDate());
-			
+
 			return newLoan;
-			
+
 		}).collect(Collectors.toList());
 	}
-	
-	public static final List<LoanBO> mapLoanListToBO(List<LoanPO> loans){
+
+	public static final List<LoanBO> mapLoanListToBO(List<LoanPO> loans) {
 		return loans.stream().map(loan -> {
-			LoanBO newLoan = LoanBO.builder()
-					.customer(CustomerDto.map(loan.getCustomer()))
-					.staff(StaffDto.map(loan.getStaff()))
-					.books(BookDto.mapBookListToBO(loan.getBooks()))
-					.dateOfLoan(loan.getDateOfLoan())
-					.returnDate(loan.getReturnDate())
-					.build();
-			
+			LoanBO newLoan = new LoanBO();
+			newLoan.setStaff(StaffDto.map(loan.getStaff()));
+			newLoan.setCustomer(CustomerDto.map(loan.getCustomer()));
+			newLoan.setBooks(BookDto.mapBookListToBO(loan.getBooks()));
+			newLoan.setDateOfLoan(loan.getDateOfLoan());
+			newLoan.setReturnDate(loan.getReturnDate());
+
 			return newLoan;
-			
+
 		}).collect(Collectors.toList());
 	}
-	
-	
+
 }

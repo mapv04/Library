@@ -3,11 +3,12 @@ package com.hcl.library.model.bo;
 import java.time.LocalDate;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 
-@Getter
-@Builder
+@Data
 public class LoanBO {
 	private int id;
 	private CustomerBO customer;
@@ -15,7 +16,6 @@ public class LoanBO {
 	private LocalDate dateOfLoan;
 	private LocalDate returnDate;
 	private List<BookBO> books;
-	
 	
 	
 }

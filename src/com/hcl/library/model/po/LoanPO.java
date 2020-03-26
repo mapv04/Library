@@ -48,8 +48,7 @@ public class LoanPO {
 	@OneToMany
 	@JoinTable(
 		name = "loan_book",
-		joinColumns = @JoinColumn(name="id_loan"),
-		inverseJoinColumns = @JoinColumn(name= "id_book")
+		joinColumns = @JoinColumn(name="id_loan")
 	)
 	private List<BookPO> books = new ArrayList<>();
 	
