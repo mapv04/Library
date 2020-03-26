@@ -5,10 +5,15 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.hcl.library.model.enums.StatusBook;
+import com.hcl.library.model.enums.StatusCustomer;
 
 import lombok.Data;
 import lombok.Getter;
@@ -19,8 +24,10 @@ import lombok.Setter;
 @Table(name = "customer")
 public class CustomerPO extends PersonPO{
 	
+	
 	@Column
-	private boolean status;
+	@Enumerated(EnumType.STRING)
+	private StatusCustomer status;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_address")
@@ -39,8 +46,6 @@ public class CustomerPO extends PersonPO{
 	public CustomerPO() {
 		
 	}
-	
-
 	public AddressPO getAddress() {
 		return address;
 	}
@@ -49,16 +54,15 @@ public class CustomerPO extends PersonPO{
 		this.address = address;
 	}
 
-	public boolean isStatus() {
-		return status;
+	public Date getBirthday() {
+		return birthday;
 	}
-
-	public void setStatus(boolean status) {
+	public void setStatus(StatusCustomer status) {
 		this.status = status;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public StatusCustomer getStatus() {
+		return status;
 	}
 
 	public void setBirthday(Date birthday) {
