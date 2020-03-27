@@ -23,8 +23,6 @@ public class BookBO {
 	private String language;
 	private String bookcover;
 	private StatusBook status;
-	private List<AuthorBO> authors = new ArrayList<>();
-	private List<LoanBO> loans = new ArrayList<>();
-	
+	private List<AuthorBO> authors = new ArrayList<>();	
 	
 }

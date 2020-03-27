@@ -94,8 +94,11 @@ public class BookService {
 		AuthorBO authorFound=authorService.findByName(author.getFullName());
 		if(authorFound==null) {
 			book.getAuthors().add((author));
+			updateBook(book);
+		}else {
+			System.out.println("Author already exist");
+
 		}
-		System.out.println("Author already exist");
 	}
 	
 	public void changeStatus(BookBO book, StatusBook status) {
