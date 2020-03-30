@@ -59,6 +59,11 @@ public class CustomerService {
 		CustomerPO customerFound = customerDao.find(customerDao.criteriaOfSearching(name, "getName"));
 		return getBusinessCustomer(customerFound);
 	}
+	
+	public CustomerPO findByCurp(String curp) {
+		return customerDao.find(customerDao.criteriaOfSearching(curp, "getCurp"));
+	}
+	
 	private CustomerBO getBusinessCustomer(CustomerPO customer) {
 		if(customer!=null) {
 			return CustomerDto.map(customer);
