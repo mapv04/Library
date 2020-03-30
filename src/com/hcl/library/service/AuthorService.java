@@ -22,7 +22,7 @@ public class AuthorService {
 		return instance;
 	}
 	
-	public boolean createBook(AuthorBO author) {
+	public boolean createAuthor(AuthorBO author) {
 		AuthorPO persistenceAuthor = getPersistenceAuthor(author);
 		AuthorBO authorFound = findByName(persistenceAuthor.getFullName());
 		if (authorFound == null) {
