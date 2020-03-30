@@ -18,6 +18,7 @@ public final class LoanDTO {
 		loan.setStaff(StaffDto.map(businessLoan.getStaff()));
 		loan.setDateOfLoan(businessLoan.getDateOfLoan());
 		loan.setReturnDate(businessLoan.getReturnDate());
+		loan.setStatus(businessLoan.getStatus());
 		loan.setBooks(BookDto.mapBookListToPO(businessLoan.getBooks()));
 
 		return loan;
@@ -31,6 +32,7 @@ public final class LoanDTO {
 			newLoan.setBooks(BookDto.mapBookListToPO(loan.getBooks()));
 			newLoan.setDateOfLoan(loan.getDateOfLoan());
 			newLoan.setReturnDate(loan.getReturnDate());
+			newLoan.setStatus(loan.getStatus());
 
 			return newLoan;
 
@@ -45,6 +47,7 @@ public final class LoanDTO {
 			newLoan.setBooks(BookDto.mapBookListToBO(loan.getBooks()));
 			newLoan.setDateOfLoan(loan.getDateOfLoan());
 			newLoan.setReturnDate(loan.getReturnDate());
+			newLoan.setStatus(loan.getStatus());
 
 			return newLoan;
 

@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 
 public abstract class GenericCrudImpl<T> implements IGenericCrud<T> {
 	private EntityManagerFactory emf= Persistence.createEntityManagerFactory("Library");
-	private EntityManager em;
+	protected EntityManager em;
 	private final Class<T> name;
 	
 	public GenericCrudImpl(Class<T> name){
