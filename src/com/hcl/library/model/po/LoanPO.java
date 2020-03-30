@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.hcl.library.model.enums.StatusLoan;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -44,6 +48,9 @@ public class LoanPO {
 	private LocalDate dateOfLoan;
 	
 	private LocalDate returnDate;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusLoan status;
 	
 	@OneToMany
 	@JoinTable(
