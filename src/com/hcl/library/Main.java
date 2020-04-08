@@ -17,16 +17,7 @@ public class Main {
 
 	public static void main(String[] args){
 		
-		AuthorBO AUTHOR = new AuthorBO();
-		
-		AUTHOR.setName("perro");
-		
-		
-		BookBO LIBRO1= new BookBO();
-		LIBRO1.getAuthors().add(AUTHOR);
-		LIBRO1.setName("HOLA");
-		
-		System.out.println(LIBRO1);
+
 	}
 
 }
